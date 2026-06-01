@@ -26,7 +26,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         </div>
         <div className="live-indicator">
           <span className="ping-dot"></span>
-          <span className="ping-label">En Línea (Simulado)</span>
+          <span className="ping-label">En Línea</span>
         </div>
       </div>
 
@@ -106,8 +106,8 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
                     </div>
                     <div className="alert-metric">
                       <div className="alert-bar-bg">
-                        <div 
-                          className="alert-bar-fill" 
+                        <div
+                          className="alert-bar-fill"
                           style={{ width: `${Math.min(pct, 100)}%`, background: pct < 50 ? '#ef4444' : '#f59e0b' }}
                         ></div>
                       </div>
@@ -142,11 +142,10 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
                   </div>
                   <span className="order-date">{o.fecha}</span>
                   <span className="order-total">S/ {Number(o.total).toFixed(2)}</span>
-                  <span className={`badge ${
-                    o.estado === 'Entregado' ? 'badge-success' :
-                    o.estado === 'Enviado' ? 'badge-info' :
-                    o.estado === 'Cancelado' ? 'badge-danger' : 'badge-warning'
-                  }`}>{o.estado}</span>
+                  <span className={`badge ${o.estado === 'Entregado' ? 'badge-success' :
+                      o.estado === 'Enviado' ? 'badge-info' :
+                        o.estado === 'Cancelado' ? 'badge-danger' : 'badge-warning'
+                    }`}>{o.estado}</span>
                 </div>
               ))
             )}
