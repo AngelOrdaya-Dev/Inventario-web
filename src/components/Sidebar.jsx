@@ -51,7 +51,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
           </div>
         </div>
 
-        <button className="btn-logout" onClick={onLogout} title="Cerrar SesiÃ³n">
+        <button className="btn-logout" onClick={onLogout} title="Cerrar Sesión">
           <LogOut size={18} />
           <span>Salir</span>
         </button>

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Box, Lock, Mail, ArrowRight, ShieldAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ContactModal from './ContactModal';
@@ -16,17 +16,16 @@ export default function Login({ onLoginSuccess }) {
     setLoading(true);
 
     setTimeout(() => {
-      // Allow any credentials for user ease, but pre-populate or suggest standard admin logins
       if (
         (email === 'admin@corvex.com' && password === 'admin123') ||
         (email === 'empleado@corvex.com' && password === 'empleado123') ||
         (email === 'usuario@corvex.com' && password === '123456') ||
-        (email !== '' && password.length >= 4) // generic fallback
+        (email !== '' && password.length >= 4)
       ) {
         const role = email.includes('admin') ? 'Administrador' : 'Empleado';
         onLoginSuccess({ email, role, name: role === 'Administrador' ? 'Giancarlos Barboza' : 'Colaborador Corvex' });
       } else {
-        setError('Credenciales invÃ¡lidas. Intente con usuario@corvex.com y contraseÃ±a "123456".');
+        setError('Credenciales inv\u00e1lidas. Intente con usuario@corvex.com y contrase\u00f1a "123456".');
       }
       setLoading(false);
     }, 800);
@@ -48,12 +47,12 @@ export default function Login({ onLoginSuccess }) {
         </div>
         
         <div className="brand-pitch">
-          <h2>GestiÃ³n de productos, clientes, pedidos e inventario.</h2>
-          <p>La plataforma inteligente todo en uno diseÃ±ada para optimizar los flujos de distribuciÃ³n y almacenamiento de CORVEX en tiempo real.</p>
+          <h2>Gesti\u00f3n de productos, clientes, pedidos e inventario.</h2>
+          <p>La plataforma inteligente todo en uno dise\u00f1ada para optimizar los flujos de distribuci\u00f3n y almacenamiento de CORVEX en tiempo real.</p>
         </div>
 
         <div className="brand-footer">
-          <p>Â© 2026 CORVEX Distribuidora. Todos los derechos reservados.</p>
+          <p>&copy; 2026 CORVEX Distribuidora. Todos los derechos reservados.</p>
         </div>
       </div>
 
@@ -84,7 +83,7 @@ export default function Login({ onLoginSuccess }) {
 
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
-              <label className="form-label">Correo ElectrÃ³nico</label>
+              <label className="form-label">Correo Electr\u00f3nico</label>
               <div className="input-with-icon">
                 <Mail size={18} className="input-icon" />
                 <input
@@ -99,13 +98,13 @@ export default function Login({ onLoginSuccess }) {
             </div>
 
             <div className="form-group">
-              <label className="form-label">ContraseÃ±a</label>
+              <label className="form-label">Contrase\u00f1a</label>
               <div className="input-with-icon">
                 <Lock size={18} className="input-icon" />
                 <input
                   type="password"
                   className="form-input"
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -131,7 +130,7 @@ export default function Login({ onLoginSuccess }) {
           </form>
 
           <div className="form-help">
-            <p>Â¿Problemas para ingresar? <button className="link-button" onClick={() => setShowContact(true)}>Contacta al administrador</button></p>
+            <p>\u00bfProblemas para ingresar? <button className="link-button" onClick={() => setShowContact(true)}>Contacta al administrador</button></p>
           </div>
         </div>
       </motion.div>
@@ -166,7 +165,7 @@ export default function Login({ onLoginSuccess }) {
           position: absolute;
           width: 500px;
           height: 500px;
-          background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
           top: -10%;
           left: -10%;
           filter: blur(50px);
@@ -180,11 +179,11 @@ export default function Login({ onLoginSuccess }) {
         }
 
         .brand-icon-wrapper {
-          background: linear-gradient(135deg, #059669 0%, #022c22 100%);
+          background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           padding: 0.75rem;
           border-radius: 12px;
           color: white;
-          box-shadow: 0 8px 24px rgba(14, 165, 233, 0.3);
+          box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
         }
 
         .brand-title {
@@ -193,7 +192,7 @@ export default function Login({ onLoginSuccess }) {
           font-weight: 800;
           line-height: 1;
           letter-spacing: -0.03em;
-          background: linear-gradient(135deg, #ffffff 0%, #93c5fd 100%);
+          background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }

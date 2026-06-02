@@ -44,7 +44,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
   };
 
   const handleDelete = (doc) => {
-    if (confirm('Â¿EstÃ¡ seguro de eliminar este cliente?')) {
+    if (confirm('¿Está seguro de eliminar este cliente?')) {
       onDeleteClient(doc);
     }
   };
@@ -96,7 +96,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Buscar por nombre o nÃºmero de documento..."
+            placeholder="Buscar por nombre o número de documento..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -107,11 +107,11 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
         <table className="custom-table">
           <thead>
             <tr>
-              <th>Cliente / RazÃ³n Social</th>
+              <th>Cliente / Razón Social</th>
               <th>Documento</th>
-              <th>TelÃ©fono</th>
+              <th>Teléfono</th>
               <th>Email</th>
-              <th>DirecciÃ³n</th>
+              <th>Dirección</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -153,7 +153,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
             {filteredClients.length === 0 && (
               <tr>
                 <td colSpan="6" style={{ textAlign: 'center', padding: '3rem', color: '#64748b' }}>
-                  No se encontraron clientes que coincidan con la bÃºsqueda.
+                  No se encontraron clientes que coincidan con la búsqueda.
                 </td>
               </tr>
             )}
@@ -167,7 +167,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
             <h3>{modalMode === 'add' ? 'Registrar Cliente' : 'Editar Cliente'}</h3>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label className="form-label">Nombre o RazÃ³n Social</label>
+                <label className="form-label">Nombre o Razón Social</label>
                 <input
                   type="text"
                   required
@@ -190,7 +190,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
                   />
                 </div>
                 <div className="form-group col-6">
-                  <label className="form-label">TelÃ©fono</label>
+                  <label className="form-label">Teléfono</label>
                   <input
                     type="text"
                     required
@@ -202,7 +202,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
               </div>
 
               <div className="form-group">
-                <label className="form-label">Correo ElectrÃ³nico</label>
+                <label className="form-label">Correo Electrónico</label>
                 <input
                   type="email"
                   required
@@ -213,7 +213,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
               </div>
 
               <div className="form-group">
-                <label className="form-label">DirecciÃ³n</label>
+                <label className="form-label">Dirección</label>
                 <input
                   type="text"
                   required

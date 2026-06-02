@@ -8,8 +8,8 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
 
   // Movement History
   const [movements, setMovements] = useState([
-    { id: 1, codigo: '001381450', name: 'Arroz CosteÃ±o 1kg', type: 'Entrada', quantity: 50, date: '2026-06-01', user: 'Giancarlos B.' },
-    { id: 2, codigo: '001201240', name: 'AtÃºn Real en aceite', type: 'Salida (Venta)', quantity: 12, date: '2026-06-01', user: 'Colaborador Corvex' },
+    { id: 1, codigo: '001381450', name: 'Arroz Costeño 1kg', type: 'Entrada', quantity: 50, date: '2026-06-01', user: 'Giancarlos B.' },
+    { id: 2, codigo: '001201240', name: 'Atún Real en aceite', type: 'Salida (Venta)', quantity: 12, date: '2026-06-01', user: 'Colaborador Corvex' },
     { id: 3, codigo: '0012578956', name: 'Fideos Don Vittorio', type: 'Entrada', quantity: 24, date: '2026-05-31', user: 'Giancarlos B.' },
   ]);
 
@@ -97,7 +97,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <span className="stat-label">Alertas de ReposiciÃ³n</span>
+              <span className="stat-label">Alertas de Reposición</span>
               <h3 className="stat-value" style={{ color: '#ef4444' }}>
                 {lowStockCount}
               </h3>
@@ -113,15 +113,15 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
         {/* Left: Stock Table */}
         <div className="glass-card table-responsive">
           <div style={{ padding: '1.5rem 1.5rem 0' }}>
-            <h3 style={{ color: 'white', marginBottom: '1.25rem', fontSize: '1rem' }}>Ajuste RÃ¡pido de Stock</h3>
+            <h3 style={{ color: 'white', marginBottom: '1.25rem', fontSize: '1rem' }}>Ajuste Rápido de Stock</h3>
           </div>
           <table className="custom-table">
             <thead>
               <tr>
-                <th>CÃ³digo</th>
+                <th>Código</th>
                 <th>Producto</th>
                 <th>Stock</th>
-                <th>AcciÃ³n</th>
+                <th>Acción</th>
               </tr>
             </thead>
             <tbody>
@@ -209,7 +209,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
                   <button
                     type="button"
                     className={`btn-select ${adjustType === 'Salida' ? 'active' : ''}`}
-                    onClick={() => { setAdjustType('Salida'); setReason('Merma / DaÃ±o'); }}
+                    onClick={() => { setAdjustType('Salida'); setReason('Merma / Daño'); }}
                     style={{ flex: 1 }}
                   >
                     â†“ Salida (Egreso)
@@ -240,15 +240,15 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
                     {adjustType === 'Entrada' ? (
                       <>
                         <option value="Reabastecimiento">Reabastecimiento</option>
-                        <option value="DevoluciÃ³n de cliente">DevoluciÃ³n de cliente</option>
-                        <option value="Inventario FÃ­sico">Inventario FÃ­sico</option>
+                        <option value="Devolución de cliente">Devolución de cliente</option>
+                        <option value="Inventario Físico">Inventario Físico</option>
                       </>
                     ) : (
                       <>
-                        <option value="Merma / DaÃ±o">Merma / DaÃ±o</option>
-                        <option value="Robo o PÃ©rdida">Robo o PÃ©rdida</option>
+                        <option value="Merma / Daño">Merma / Daño</option>
+                        <option value="Robo o Pérdida">Robo o Pérdida</option>
                         <option value="Vencimiento">Vencimiento</option>
-                        <option value="Inventario FÃ­sico">Inventario FÃ­sico</option>
+                        <option value="Inventario Físico">Inventario Físico</option>
                       </>
                     )}
                   </select>
