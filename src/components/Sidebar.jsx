@@ -81,7 +81,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
         }
 
         .brand-logo {
-          background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+          background: linear-gradient(135deg, #059669 0%, #022c22 100%);
           padding: 0.5rem;
           border-radius: 8px;
           color: white;
@@ -98,7 +98,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
         .brand-badge {
           background: rgba(14, 165, 233, 0.15);
           border: 1px solid rgba(14, 165, 233, 0.3);
-          color: #38bdf8;
+          color: #10b981;
           font-size: 0.65rem;
           font-weight: 800;
           padding: 0.1rem 0.4rem;
@@ -137,7 +137,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
         }
 
         .nav-item.active {
-          color: #38bdf8;
+          color: #10b981;
           background: rgba(14, 165, 233, 0.08);
           font-weight: 600;
         }
@@ -156,7 +156,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
           top: 20%;
           bottom: 20%;
           width: 4px;
-          background: #38bdf8;
+          background: #10b981;
           border-radius: 4px 0 0 4px;
           box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
         }
@@ -180,7 +180,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
           width: 40px;
           height: 40px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+          background: linear-gradient(135deg, #059669 0%, #10b981 100%);
           display: flex;
           align-items: center;
           justify-content: center;

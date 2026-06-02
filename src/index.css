@@ -107,7 +107,7 @@ h1, h2, h3, h4 {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #fff 30%, #38bdf8 100%);
+  background: linear-gradient(135deg, #fff 30%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -340,7 +340,7 @@ h1, h2, h3, h4 {
 .stat-icon-wrapper.success { background: linear-gradient(135deg, #10b981, #047857); }
 .stat-icon-wrapper.danger  { background: linear-gradient(135deg, #ef4444, #b91c1c); }
 .stat-icon-wrapper.warning { background: linear-gradient(135deg, #f59e0b, #b45309); }
-.stat-icon-wrapper.blue    { background: linear-gradient(135deg, #0ea5e9, #0369a1); }
+.stat-icon-wrapper.emerald    { background: linear-gradient(135deg, #059669, #022c22); }
 .stat-icon-wrapper.purple  { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
 
 /* ─── Badges ─────────────────────────────────────────── */
@@ -356,7 +356,7 @@ h1, h2, h3, h4 {
 
 .badge-primary {
   background: rgba(14, 165, 233, 0.12);
-  color: #38bdf8;
+  color: #10b981;
   border: 1px solid rgba(14, 165, 233, 0.3);
 }
 
@@ -380,7 +380,7 @@ h1, h2, h3, h4 {
 
 .badge-info {
   background: rgba(14, 165, 233, 0.1);
-  color: #38bdf8;
+  color: #10b981;
   border: 1px solid rgba(14, 165, 233, 0.3);
 }
 
@@ -413,15 +413,15 @@ h1, h2, h3, h4 {
 }
 
 .btn-action.edit {
-  color: #38bdf8;
+  color: #10b981;
   border-color: rgba(56, 189, 248, 0.25);
   background: rgba(56, 189, 248, 0.07);
 }
 
 .btn-action.edit:hover {
-  background: #38bdf8;
+  background: #10b981;
   color: #070a13;
-  border-color: #38bdf8;
+  border-color: #10b981;
   box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
 }
 
@@ -457,7 +457,7 @@ h1, h2, h3, h4 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, var(--accent-color) 0%, #0369a1 100%);
+  background: linear-gradient(135deg, var(--accent-color) 0%, #022c22 100%);
   color: white;
   border: none;
   padding: 0.7rem 1.4rem;
@@ -619,7 +619,7 @@ h1, h2, h3, h4 {
 /* ─── Utility Classes ────────────────────────────────── */
 .font-mono      { font-family: var(--font-mono); font-size: 0.875rem; }
 .font-semibold  { font-weight: 600; }
-.text-cyan      { color: #38bdf8; }
+.text-emerald      { color: #10b981; }
 .text-white     { color: #ffffff; }
 .text-secondary { color: var(--text-secondary); }
 .text-muted     { color: var(--text-muted); }

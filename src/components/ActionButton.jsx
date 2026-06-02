@@ -37,7 +37,7 @@ export default function ActionButton({ type, onClick, title }) {
       style={{
         background: 'rgba(31, 41, 55, 0.6)',
         border: `1px solid ${isEdit ? 'rgba(14, 165, 233, 0.3)' : isDelete ? 'rgba(239, 68, 68, 0.3)' : isView ? 'rgba(16, 185, 129, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`,
-        color: isEdit ? '#38bdf8' : isDelete ? '#ef4444' : isView ? '#34d399' : '#10b981',
+        color: isEdit ? '#10b981' : isDelete ? '#ef4444' : isView ? '#34d399' : '#10b981',
         padding: '0.4rem',
         borderRadius: '8px',
         cursor: 'pointer',

@@ -136,7 +136,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
             {filteredOrders.map((order) => {
               return (
                 <tr key={order.id}>
-                  <td className="font-mono text-cyan">{order.id}</td>
+                  <td className="font-mono text-emerald">{order.id}</td>
                   <td><span className="font-semibold" style={{ color: 'white' }}>{order.cliente}</span></td>
                   <td>
                     <span className="text-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
@@ -256,7 +256,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
         <div className="modal-overlay">
           <div className="modal-content glass-card animated zoomIn" style={{ maxWidth: '500px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
-              <ShoppingBag size={24} className="text-cyan" />
+              <ShoppingBag size={24} className="text-emerald" />
               <h3>Detalle de Pedido {selectedOrder.id}</h3>
             </div>
             
@@ -275,7 +275,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
                     <br />
                     <span className="text-secondary" style={{ fontSize: '0.85rem' }}>{item.cantidad} unidades x S/ {Number(item.precio).toFixed(2)}</span>
                   </div>
-                  <span className="font-semibold text-cyan">S/ {(item.cantidad * item.precio).toFixed(2)}</span>
+                  <span className="font-semibold text-emerald">S/ {(item.cantidad * item.precio).toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -332,7 +332,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
         }
         .total-amount {
           font-size: 1.5rem;
-          color: #38bdf8;
+          color: #10b981;
         }
       `}</style>
     </motion.div>

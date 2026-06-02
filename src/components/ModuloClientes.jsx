@@ -126,7 +126,7 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
                     <span className="font-semibold" style={{ color: 'white' }}>{client.nombre}</span>
                   </div>
                 </td>
-                <td className="font-mono text-cyan">{client.documento}</td>
+                <td className="font-mono text-emerald">{client.documento}</td>
                 <td>
                   <span className="text-secondary">
                     {client.telefono}

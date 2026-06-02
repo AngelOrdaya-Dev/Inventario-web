@@ -155,7 +155,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
               const isLowStock = Number(product.stock) <= Number(product.stockMinimo || 5);
               return (
                 <tr key={product.codigo}>
-                  <td className="font-mono text-cyan">{product.codigo}</td>
+                  <td className="font-mono text-emerald">{product.codigo}</td>
                   <td>
                     <div>
                       <span className="font-semibold" style={{ color: 'white' }}>{product.producto}</span>

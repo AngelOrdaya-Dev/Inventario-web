@@ -127,7 +127,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
             <tbody>
               {products.map(p => (
                 <tr key={p.codigo}>
-                  <td className="font-mono text-cyan">{p.codigo}</td>
+                  <td className="font-mono text-emerald">{p.codigo}</td>
                   <td className="font-semibold">{p.producto}</td>
                   <td>
                     <span className={Number(p.stock) <= Number(p.stockMinimo || 5) ? 'text-red font-semibold' : 'text-green font-semibold'}>
@@ -191,7 +191,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
             <h3>Ajustar Inventario</h3>
             <p className="text-secondary" style={{ marginBottom: '1.5rem', fontSize: '0.9rem' }}>
               Producto: <strong style={{ color: 'white' }}>{selectedProduct.producto}</strong>
-              &nbsp;— Stock actual: <strong style={{ color: '#38bdf8' }}>{selectedProduct.stock} {selectedProduct.unidad}</strong>
+              &nbsp;— Stock actual: <strong style={{ color: '#10b981' }}>{selectedProduct.stock} {selectedProduct.unidad}</strong>
             </p>
 
             <form onSubmit={handleAdjustSubmit}>
@@ -321,9 +321,9 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
           font-family: inherit;
         }
         .btn-select.active {
-          background: #38bdf8;
+          background: #10b981;
           color: #070a13;
-          border-color: #38bdf8;
+          border-color: #10b981;
           box-shadow: 0 0 14px rgba(56,189,248,0.3);
         }
         .btn-select:hover:not(.active) {

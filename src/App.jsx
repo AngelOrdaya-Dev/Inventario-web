@@ -245,7 +245,7 @@ export default function App() {
         }
 
         .premium-toast.info {
-          border-left: 4px solid #38bdf8;
+          border-left: 4px solid #10b981;
         }
       `}</style>
     </div>

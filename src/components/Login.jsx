@@ -180,7 +180,7 @@ export default function Login({ onLoginSuccess }) {
         }
 
         .brand-icon-wrapper {
-          background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);
+          background: linear-gradient(135deg, #059669 0%, #022c22 100%);
           padding: 0.75rem;
           border-radius: 12px;
           color: white;
@@ -202,7 +202,7 @@ export default function Login({ onLoginSuccess }) {
           font-size: 0.75rem;
           letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: #38bdf8;
+          color: #10b981;
           font-weight: 700;
           margin-top: 0.25rem;
         }
@@ -287,7 +287,7 @@ export default function Login({ onLoginSuccess }) {
         }
 
         .input-with-icon .form-input:focus + .input-icon {
-          color: #38bdf8;
+          color: #10b981;
         }
 
         .login-btn {
@@ -319,14 +319,14 @@ export default function Login({ onLoginSuccess }) {
         }
 
         .form-help a {
-          color: #38bdf8;
+          color: #10b981;
           text-decoration: none;
           font-weight: 500;
           transition: var(--transition-smooth);
         }
 
         .form-help a:hover {
-          color: #0ea5e9;
+          color: #059669;
           text-decoration: underline;
         }
 

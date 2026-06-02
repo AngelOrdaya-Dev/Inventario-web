@@ -219,7 +219,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
           z-index: 2;
         }
 
-        .kpi-icon-wrapper.blue { background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%); }
+        .kpi-icon-wrapper.emerald { background: linear-gradient(135deg, #059669 0%, #022c22 100%); }
         .kpi-icon-wrapper.green { background: linear-gradient(135deg, #10b981 0%, #047857 100%); }
         .kpi-icon-wrapper.orange { background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); }
         .kpi-icon-wrapper.purple { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); }
@@ -256,7 +256,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
           opacity: 0.15;
           pointer-events: none;
         }
-        .kpi-glow.blue { background: #0ea5e9; }
+        .kpi-glow.emerald { background: #059669; }
         .kpi-glow.green { background: #10b981; }
         .kpi-glow.orange { background: #f59e0b; }
         .kpi-glow.purple { background: #8b5cf6; }
@@ -294,7 +294,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         .btn-text-link {
           background: none;
           border: none;
-          color: #38bdf8;
+          color: #10b981;
           font-weight: 600;
           cursor: pointer;
           font-size: 0.875rem;
@@ -302,7 +302,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         }
 
         .btn-text-link:hover {
-          color: #0ea5e9;
+          color: #059669;
           text-decoration: underline;
         }
 
@@ -408,7 +408,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
 
         .order-id {
           font-weight: 700;
-          color: #38bdf8;
+          color: #10b981;
         }
 
         .order-customer {
