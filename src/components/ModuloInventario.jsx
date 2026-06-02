@@ -58,7 +58,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
   const lowStockCount = products.filter(p => Number(p.stock) <= Number(p.stockMinimo || 5)).length;
 
   return (
-    <motion.div 
+    <motion.div
       className="module-container"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
       </div>
 
       <div className="dashboard-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', marginBottom: '0.5rem' }}>
-        <motion.div 
+        <motion.div
           className="stat-card glass-card"
           whileHover={{ y: -5 }}
           transition={{ type: 'spring', stiffness: 300 }}
@@ -90,7 +90,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="stat-card glass-card"
           whileHover={{ y: -5 }}
           transition={{ type: 'spring', stiffness: 300 }}
@@ -191,7 +191,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
             <h3>Ajustar Inventario</h3>
             <p className="text-secondary" style={{ marginBottom: '1.5rem', fontSize: '0.9rem' }}>
               Producto: <strong style={{ color: 'white' }}>{selectedProduct.producto}</strong>
-              &nbsp;â€” Stock actual: <strong style={{ color: '#10b981' }}>{selectedProduct.stock} {selectedProduct.unidad}</strong>
+              &nbsp;— Stock actual: <strong style={{ color: '#10b981' }}>{selectedProduct.stock} {selectedProduct.unidad}</strong>
             </p>
 
             <form onSubmit={handleAdjustSubmit}>
