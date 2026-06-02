@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Package, RefreshCw, AlertTriangle, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -109,7 +109,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
         </motion.div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '1.5rem' }}>
+      <div className="inventario-grid">
         {/* Left: Stock Table */}
         <div className="glass-card table-responsive">
           <div style={{ padding: '1.5rem 1.5rem 0' }}>
@@ -204,7 +204,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
                     onClick={() => { setAdjustType('Entrada'); setReason('Reabastecimiento'); }}
                     style={{ flex: 1 }}
                   >
-                    â†‘ Entrada (Ingreso)
+                    ↑ Entrada (Ingreso)
                   </button>
                   <button
                     type="button"
@@ -212,7 +212,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
                     onClick={() => { setAdjustType('Salida'); setReason('Merma / Daño'); }}
                     style={{ flex: 1 }}
                   >
-                    â†“ Salida (Egreso)
+                    ↓ Salida (Egreso)
                   </button>
                 </div>
               </div>
@@ -324,11 +324,21 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
           background: #10b981;
           color: #070a13;
           border-color: #10b981;
-          box-shadow: 0 0 14px rgba(56,189,248,0.3);
+          box-shadow: 0 0 14px rgba(16,185,129,0.3);
         }
         .btn-select:hover:not(.active) {
           background: rgba(255,255,255,0.05);
           color: white;
+        }
+        .inventario-grid {
+          display: grid;
+          grid-template-columns: 1.2fr 1fr;
+          gap: 1.5rem;
+        }
+        @media (max-width: 900px) {
+          .inventario-grid {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
     </motion.div>

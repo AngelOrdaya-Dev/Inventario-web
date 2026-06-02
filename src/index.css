@@ -82,6 +82,14 @@ button, input, select, textarea {
   }
 }
 
+@media (max-width: 640px) {
+  .main-content {
+    margin-left: 0 !important;
+    margin-bottom: 70px !important;
+    padding: 1.25rem !important;
+  }
+}
+
 /* â”€â”€â”€ Glass Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .glass-card {
   background: rgba(17, 24, 39, 0.8);
@@ -606,6 +614,22 @@ h1, h2, h3, h4 {
 .col-7 { flex: 0 0 calc(58.333% - 0.5rem) !important; }
 .col-3 { flex: 0 0 calc(25% - 0.5rem) !important; }
 .col-2 { flex: 0 0 calc(16.666% - 0.5rem) !important; }
+
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+  }
+  .form-row .col-6,
+  .form-row .col-4,
+  .form-row .col-7,
+  .form-row .col-3,
+  .form-row .col-2 {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
 
 .modal-footer {
   display: flex;

@@ -38,6 +38,11 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
             </button>
           );
         })}
+        {/* Botón de logout visible solo en versión móvil (barra inferior) */}
+        <button className="nav-item mobile-logout-only" onClick={onLogout} title="Cerrar Sesión">
+          <LogOut size={20} className="nav-icon" style={{ color: '#ef4444' }} />
+          <span className="nav-label">Salir</span>
+        </button>
       </nav>
 
       <div className="sidebar-footer">
@@ -233,6 +238,10 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
           box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
         }
 
+        .mobile-logout-only {
+          display: none;
+        }
+
         @media (max-width: 1024px) {
           .app-sidebar {
             width: 80px;
@@ -253,6 +262,51 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
           .user-profile {
             justify-content: center;
             padding: 0;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .app-sidebar {
+            width: 100% !important;
+            height: 65px !important;
+            flex-direction: row !important;
+            top: auto !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            border-right: none !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+            padding: 0 0.5rem !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+          }
+          .sidebar-brand, .sidebar-footer {
+            display: none !important;
+          }
+          .sidebar-nav {
+            flex-direction: row !important;
+            width: 100% !important;
+            justify-content: space-around !important;
+            align-items: center !important;
+            height: 100% !important;
+            gap: 0 !important;
+          }
+          .nav-item {
+            justify-content: center !important;
+            padding: 0.5rem !important;
+            border-radius: 8px !important;
+            width: auto !important;
+            flex: 1 !important;
+            margin: 0 !important;
+          }
+          .nav-item.active {
+            background: rgba(16, 185, 129, 0.1) !important;
+          }
+          .nav-active-indicator {
+            display: none !important;
+          }
+          .mobile-logout-only {
+            display: flex !important;
           }
         }
       `}</style>
