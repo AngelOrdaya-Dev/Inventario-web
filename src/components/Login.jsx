@@ -287,6 +287,20 @@ export default function Login({ onLoginSuccess }) {
           font-size: 0.875rem;
           color: #64748b;
         }
+        .link-button {
+          background: none;
+          border: none;
+          color: #10b981;
+          text-decoration: none;
+          font-weight: 500;
+          cursor: pointer;
+          padding: 0;
+          transition: var(--transition-smooth);
+        }
+        .link-button:hover {
+          color: #34d399;
+          text-decoration: underline;
+        }
         .spinner {
           width: 20px;
           height: 20px;

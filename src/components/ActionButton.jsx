@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Edit2, Trash2, Plus, Eye } from 'lucide-react';
 
@@ -36,7 +36,7 @@ export default function ActionButton({ type, onClick, title }) {
       animate={{ opacity: 1, scale: 1 }}
       style={{
         background: 'rgba(31, 41, 55, 0.6)',
-        border: `1px solid ${isEdit ? 'rgba(14, 165, 233, 0.3)' : isDelete ? 'rgba(239, 68, 68, 0.3)' : isView ? 'rgba(16, 185, 129, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`,
+        border: `1px solid ${isEdit ? 'rgba(16, 185, 129, 0.3)' : isDelete ? 'rgba(239, 68, 68, 0.3)' : isView ? 'rgba(16, 185, 129, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`,
         color: isEdit ? '#10b981' : isDelete ? '#ef4444' : isView ? '#34d399' : '#10b981',
         padding: '0.4rem',
         borderRadius: '8px',

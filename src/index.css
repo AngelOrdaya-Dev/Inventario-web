@@ -95,8 +95,8 @@ button, input, select, textarea {
 }
 
 .glass-card:hover {
-  border-color: rgba(14, 165, 233, 0.2);
-  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.8), 0 0 15px rgba(14, 165, 233, 0.04);
+  border-color: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.8), 0 0 15px rgba(16, 185, 129, 0.04);
 }
 
 /* â”€â”€â”€ Typography â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -258,7 +258,7 @@ h1, h2, h3, h4 {
 }
 
 .custom-table tbody tr:hover {
-  background: rgba(56, 189, 248, 0.03);
+  background: rgba(16, 185, 129, 0.03);
 }
 
 .custom-table tbody tr:last-child td {
@@ -355,9 +355,9 @@ h1, h2, h3, h4 {
 }
 
 .badge-primary {
-  background: rgba(14, 165, 233, 0.12);
+  background: rgba(16, 185, 129, 0.12);
   color: #10b981;
-  border: 1px solid rgba(14, 165, 233, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .badge-success {
@@ -379,9 +379,9 @@ h1, h2, h3, h4 {
 }
 
 .badge-info {
-  background: rgba(14, 165, 233, 0.1);
+  background: rgba(16, 185, 129, 0.1);
   color: #10b981;
-  border: 1px solid rgba(14, 165, 233, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 /* â”€â”€â”€ Action Buttons â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
@@ -414,15 +414,15 @@ h1, h2, h3, h4 {
 
 .btn-action.edit {
   color: #10b981;
-  border-color: rgba(56, 189, 248, 0.25);
-  background: rgba(56, 189, 248, 0.07);
+  border-color: rgba(16, 185, 129, 0.25);
+  background: rgba(16, 185, 129, 0.07);
 }
 
 .btn-action.edit:hover {
   background: #10b981;
   color: #070a13;
   border-color: #10b981;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.35);
 }
 
 .btn-action.delete {
@@ -465,13 +465,13 @@ h1, h2, h3, h4 {
   font-size: 0.9rem;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
   transition: var(--transition-smooth);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.45);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
 }
 
 .btn-secondary {

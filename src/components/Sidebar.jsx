@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { LayoutDashboard, ShoppingCart, Users, FolderKanban, ClipboardList, LogOut, Box } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
@@ -96,8 +96,8 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
         }
 
         .brand-badge {
-          background: rgba(14, 165, 233, 0.15);
-          border: 1px solid rgba(14, 165, 233, 0.3);
+          background: rgba(16, 185, 129, 0.15);
+          border: 1px solid rgba(16, 185, 129, 0.3);
           color: #10b981;
           font-size: 0.65rem;
           font-weight: 800;
@@ -138,7 +138,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
 
         .nav-item.active {
           color: #10b981;
-          background: rgba(14, 165, 233, 0.08);
+          background: rgba(16, 185, 129, 0.08);
           font-weight: 600;
         }
 
@@ -158,7 +158,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
           width: 4px;
           background: #10b981;
           border-radius: 4px 0 0 4px;
-          box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+          box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
         }
 
         .sidebar-footer {

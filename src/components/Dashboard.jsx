@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Box, Users, ShoppingCart, TrendingUp, AlertTriangle, CheckCircle, Package } from 'lucide-react';
 
 export default function Dashboard({ products, clients, orders, onNavigate }) {
@@ -33,14 +33,14 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
       {/* KPI Cards Grid */}
       <div className="kpi-grid">
         <div className="glass-card kpi-card" onClick={() => onNavigate('productos')}>
-          <div className="kpi-icon-wrapper blue">
+          <div className="kpi-icon-wrapper emerald">
             <Package size={24} />
           </div>
           <div className="kpi-details">
-            <span className="kpi-title">Productos Ãšnicos</span>
+            <span className="kpi-title">Productos Únicos</span>
             <span className="kpi-value">{totalProducts}</span>
           </div>
-          <div className="kpi-glow blue"></div>
+          <div className="kpi-glow emerald"></div>
         </div>
 
         <div className="glass-card kpi-card" onClick={() => onNavigate('clientes')}>
@@ -123,7 +123,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         {/* Recent Orders */}
         <div className="glass-card flex-1">
           <div className="section-title-wrapper">
-            <h3>Ãšltimos Pedidos</h3>
+            <h3>Últimos Pedidos</h3>
             <button className="btn-text-link" onClick={() => onNavigate('pedidos')}>Ver todos</button>
           </div>
 
