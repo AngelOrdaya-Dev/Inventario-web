@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Search, Edit2, Trash2, Mail, Phone, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import ActionButton from './ActionButton';
 
 export default function ModuloClientes({ clients, onAddClient, onEditClient, onDeleteClient }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -67,15 +69,26 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
   };
 
   return (
-    <div className="module-container">
+    <motion.div 
+      className="module-container"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="module-header">
         <div>
-          <span className="badge badge-success">SOCIOS</span>
+          <span className="badge badge-success" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.3)' }}>SOCIOS</span>
           <h2 className="module-title">Clientes</h2>
         </div>
-        <button className="btn-primary" onClick={openAddModal}>
+        <motion.button 
+          className="btn-primary" 
+          onClick={openAddModal}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{ background: '#10b981', color: '#050505', border: 'none', fontWeight: 'bold' }}
+        >
           <Plus size={18} /> Registrar nuevo cliente
-        </button>
+        </motion.button>
       </div>
 
       <div className="filters-bar glass-card">
@@ -130,13 +143,9 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
                   </span>
                 </td>
                 <td>
-                  <div className="action-buttons">
-                    <button className="btn-action edit" onClick={() => openEditModal(client)} title="Editar">
-                      <Edit2 size={16} />
-                    </button>
-                    <button className="btn-action delete" onClick={() => handleDelete(client.documento)} title="Eliminar">
-                      <Trash2 size={16} />
-                    </button>
+                  <div className="action-buttons" style={{ display: 'flex' }}>
+                    <ActionButton type="edit" onClick={() => openEditModal(client)} title="Editar" />
+                    <ActionButton type="delete" onClick={() => handleDelete(client.documento)} title="Eliminar" />
                   </div>
                 </td>
               </tr>
@@ -242,6 +251,6 @@ export default function ModuloClientes({ clients, onAddClient, onEditClient, onD
           border: 1px solid rgba(255,255,255,0.1);
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Package, RefreshCw, AlertTriangle, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ModuloInventario({ products, onQuickReplenish }) {
   const [showAdjustModal, setShowAdjustModal] = useState(false);
@@ -57,17 +58,25 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
   const lowStockCount = products.filter(p => Number(p.stock) <= Number(p.stockMinimo || 5)).length;
 
   return (
-    <div className="module-container">
+    <motion.div 
+      className="module-container"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="module-header">
         <div>
-          <span className="badge badge-danger">KARDEX</span>
+          <span className="badge badge-danger" style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: '1px solid rgba(239, 68, 68, 0.3)' }}>KARDEX</span>
           <h2 className="module-title">Inventario y Movimientos</h2>
         </div>
       </div>
 
-      {/* Overview Cards */}
       <div className="dashboard-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', marginBottom: '0.5rem' }}>
-        <div className="stat-card glass-card">
+        <motion.div 
+          className="stat-card glass-card"
+          whileHover={{ y: -5 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <span className="stat-label">Stock Valorizado Total</span>
@@ -79,9 +88,13 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
               <Package size={24} />
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="stat-card glass-card">
+        <motion.div 
+          className="stat-card glass-card"
+          whileHover={{ y: -5 }}
+          transition={{ type: 'spring', stiffness: 300 }}
+        >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <span className="stat-label">Alertas de Reposición</span>
@@ -93,7 +106,7 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
               <AlertTriangle size={24} />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '1.5rem' }}>
@@ -318,6 +331,6 @@ export default function ModuloInventario({ products, onQuickReplenish }) {
           color: white;
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }

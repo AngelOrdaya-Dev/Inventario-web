@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg-primary: #0b0f19;
-  --bg-secondary: #111827;
-  --bg-tertiary: #1f2937;
-  --border-color: #374151;
-  --border-focus: #38bdf8;
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #171717;
+  --border-color: #262626;
+  --border-focus: #10b981;
 
-  --accent-color: #0ea5e9;
-  --accent-glow: rgba(14, 165, 233, 0.15);
-  --accent-light: #38bdf8;
+  --accent-color: #10b981;
+  --accent-glow: rgba(16, 185, 129, 0.15);
+  --accent-light: #34d399;
 
   --text-primary: #f3f4f6;
   --text-secondary: #9ca3af;
@@ -28,7 +28,7 @@
 
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
-  --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.2);
+  --shadow-glow: 0 0 20px rgba(16, 185, 129, 0.2);
 }
 
 * {

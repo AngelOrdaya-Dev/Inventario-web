@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Search, Eye, ShoppingBag, Trash2, Calendar } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import ActionButton from './ActionButton';
 
 export default function ModuloPedidos({ orders, products, clients, onAddOrder, onDeleteOrder }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -83,15 +85,26 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
   };
 
   return (
-    <div className="module-container">
+    <motion.div 
+      className="module-container"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="module-header">
         <div>
-          <span className="badge badge-warning">VENTAS</span>
+          <span className="badge badge-warning" style={{ background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.3)' }}>VENTAS</span>
           <h2 className="module-title">Pedidos</h2>
         </div>
-        <button className="btn-primary" onClick={openAddModal}>
+        <motion.button 
+          className="btn-primary" 
+          onClick={openAddModal}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{ background: '#10b981', color: '#050505', border: 'none', fontWeight: 'bold' }}
+        >
           <Plus size={18} /> Crear nuevo pedido
-        </button>
+        </motion.button>
       </div>
 
       <div className="filters-bar glass-card">
@@ -142,13 +155,9 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
                   </td>
                   <td className="text-secondary">{order.fechaEntrega}</td>
                   <td>
-                    <div className="action-buttons">
-                      <button className="btn-action edit" onClick={() => handleViewOrder(order)} title="Ver Detalle">
-                        <Eye size={16} />
-                      </button>
-                      <button className="btn-action delete" onClick={() => handleDelete(order.id)} title="Eliminar">
-                        <Trash2 size={16} />
-                      </button>
+                    <div className="action-buttons" style={{ display: 'flex' }}>
+                      <ActionButton type="view" onClick={() => handleViewOrder(order)} title="Ver Detalle" />
+                      <ActionButton type="delete" onClick={() => handleDelete(order.id)} title="Eliminar" />
                     </div>
                   </td>
                 </tr>
@@ -326,6 +335,6 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
           color: #38bdf8;
         }
       `}</style>
-    </div>
+    </motion.div>
   );
 }

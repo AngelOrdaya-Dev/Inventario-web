@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Search, Edit2, Trash2, ArrowUpDown, ChevronDown, Check, AlertCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import ActionButton from './ActionButton';
 
 export default function ModuloProductos({ products, onAddProduct, onEditProduct, onDeleteProduct }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -92,15 +94,26 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
   };
 
   return (
-    <div className="module-container">
+    <motion.div 
+      className="module-container"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="module-header">
         <div>
-          <span className="badge badge-primary">INVENTARIO</span>
+          <span className="badge badge-primary" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.3)' }}>INVENTARIO</span>
           <h2 className="module-title">Inventario de Productos</h2>
         </div>
-        <button className="btn-primary" onClick={openAddModal}>
+        <motion.button 
+          className="btn-primary" 
+          onClick={openAddModal}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          style={{ background: '#10b981', color: '#050505', border: 'none', fontWeight: 'bold' }}
+        >
           <Plus size={18} /> Registrar nuevo producto
-        </button>
+        </motion.button>
       </div>
 
       <div className="filters-bar glass-card">
@@ -160,13 +173,9 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
                     </span>
                   </td>
                   <td>
-                    <div className="action-buttons">
-                      <button className="btn-action edit" onClick={() => openEditModal(product)} title="Editar">
-                        <Edit2 size={16} />
-                      </button>
-                      <button className="btn-action delete" onClick={() => handleDelete(product.codigo)} title="Eliminar">
-                        <Trash2 size={16} />
-                      </button>
+                    <div className="action-buttons" style={{ display: 'flex' }}>
+                      <ActionButton type="edit" onClick={() => openEditModal(product)} title="Editar" />
+                      <ActionButton type="delete" onClick={() => handleDelete(product.codigo)} title="Eliminar" />
                     </div>
                   </td>
                 </tr>
@@ -296,6 +305,6 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

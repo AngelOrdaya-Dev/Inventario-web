@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Box, Lock, Mail, ArrowRight, ShieldAlert } from 'lucide-react';
+import { motion } from 'framer-motion';
+import ContactModal from './ContactModal';
 
 export default function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +58,12 @@ export default function Login({ onLoginSuccess }) {
       </div>
 
       {/* Right side: Credentials Form */}
-      <div className="login-right">
+      <motion.div 
+        className="login-right"
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         <div className="form-container glass-card">
           <div className="form-header">
             <span className="badge badge-info">ACCESO AL SISTEMA</span>
@@ -64,10 +72,14 @@ export default function Login({ onLoginSuccess }) {
           </div>
 
           {error && (
-            <div className="login-error-badge">
+            <motion.div 
+              className="login-error-badge"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
               <ShieldAlert size={18} />
               <span>{error}</span>
-            </div>
+            </motion.div>
           )}
 
           <form onSubmit={handleSubmit} className="login-form">
@@ -101,7 +113,13 @@ export default function Login({ onLoginSuccess }) {
               </div>
             </div>
 
-            <button type="submit" className="btn-primary login-btn" disabled={loading}>
+            <motion.button 
+              type="submit" 
+              className="btn-primary login-btn" 
+              disabled={loading}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               {loading ? (
                 <span className="spinner"></span>
               ) : (
@@ -109,14 +127,16 @@ export default function Login({ onLoginSuccess }) {
                   Ingresar <ArrowRight size={18} />
                 </>
               )}
-            </button>
+            </motion.button>
           </form>
 
           <div className="form-help">
-            <p>¿Problemas para ingresar? <a href="#support">Contacta al administrador</a></p>
+            <p>¿Problemas para ingresar? <button className="link-button" onClick={() => setShowContact(true)}>Contacta al administrador</button></p>
           </div>
         </div>
-      </div>
+      </motion.div>
+
+      {showContact && <ContactModal onClose={() => setShowContact(false)} />}
 
       <style>{`
         .login-screen {
