@@ -25,7 +25,7 @@ export default function Login({ onLoginSuccess }) {
         const role = email.includes('admin') ? 'Administrador' : 'Empleado';
         onLoginSuccess({ email, role, name: role === 'Administrador' ? 'Giancarlos Barboza' : 'Colaborador Corvex' });
       } else {
-        setError('Credenciales inv\u00e1lidas. Intente con usuario@corvex.com y contrase\u00f1a "123456".');
+        setError('Credenciales inválidas. Intente con usuario@corvex.com y contraseña "123456".');
       }
       setLoading(false);
     }, 800);
@@ -33,7 +33,6 @@ export default function Login({ onLoginSuccess }) {
 
   return (
     <div className="login-screen">
-      {/* Left side: Brand Showcase */}
       <div className="login-left">
         <div className="login-glow"></div>
         <div className="brand-header">
@@ -47,16 +46,15 @@ export default function Login({ onLoginSuccess }) {
         </div>
         
         <div className="brand-pitch">
-          <h2>Gesti\u00f3n de productos, clientes, pedidos e inventario.</h2>
-          <p>La plataforma inteligente todo en uno dise\u00f1ada para optimizar los flujos de distribuci\u00f3n y almacenamiento de CORVEX en tiempo real.</p>
+          <h2>Gestión de productos, clientes, pedidos e inventario.</h2>
+          <p>La plataforma inteligente todo en uno diseñada para optimizar los flujos de distribución y almacenamiento de CORVEX en tiempo real.</p>
         </div>
 
         <div className="brand-footer">
-          <p>&copy; 2026 CORVEX Distribuidora. Todos los derechos reservados.</p>
+          <p>© 2026 CORVEX Distribuidora. Todos los derechos reservados.</p>
         </div>
       </div>
 
-      {/* Right side: Credentials Form */}
       <motion.div 
         className="login-right"
         initial={{ opacity: 0, x: 50 }}
@@ -83,7 +81,7 @@ export default function Login({ onLoginSuccess }) {
 
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
-              <label className="form-label">Correo Electr\u00f3nico</label>
+              <label className="form-label">Correo Electrónico</label>
               <div className="input-with-icon">
                 <Mail size={18} className="input-icon" />
                 <input
@@ -98,7 +96,7 @@ export default function Login({ onLoginSuccess }) {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Contrase\u00f1a</label>
+              <label className="form-label">Contraseña</label>
               <div className="input-with-icon">
                 <Lock size={18} className="input-icon" />
                 <input
@@ -122,15 +120,13 @@ export default function Login({ onLoginSuccess }) {
               {loading ? (
                 <span className="spinner"></span>
               ) : (
-                <>
-                  Ingresar <ArrowRight size={18} />
-                </>
+                <>Ingresar <ArrowRight size={18} /></>
               )}
             </motion.button>
           </form>
 
           <div className="form-help">
-            <p>\u00bfProblemas para ingresar? <button className="link-button" onClick={() => setShowContact(true)}>Contacta al administrador</button></p>
+            <p>¿Problemas para ingresar? <button className="link-button" onClick={() => setShowContact(true)}>Contacta al administrador</button></p>
           </div>
         </div>
       </motion.div>
@@ -149,7 +145,6 @@ export default function Login({ onLoginSuccess }) {
           z-index: 10000;
           overflow: hidden;
         }
-
         .login-left {
           flex: 1.2;
           background: radial-gradient(circle at 0% 0%, #0c152b 0%, #060814 100%);
@@ -160,7 +155,6 @@ export default function Login({ onLoginSuccess }) {
           position: relative;
           border-right: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         .login-glow {
           position: absolute;
           width: 500px;
@@ -171,13 +165,11 @@ export default function Login({ onLoginSuccess }) {
           filter: blur(50px);
           pointer-events: none;
         }
-
         .brand-header {
           display: flex;
           align-items: center;
           gap: 1rem;
         }
-
         .brand-icon-wrapper {
           background: linear-gradient(135deg, #10b981 0%, #059669 100%);
           padding: 0.75rem;
@@ -185,7 +177,6 @@ export default function Login({ onLoginSuccess }) {
           color: white;
           box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
         }
-
         .brand-title {
           font-family: 'Outfit', sans-serif;
           font-size: 2.25rem;
@@ -196,7 +187,6 @@ export default function Login({ onLoginSuccess }) {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-
         .brand-subtitle {
           font-size: 0.75rem;
           letter-spacing: 0.3em;
@@ -205,12 +195,10 @@ export default function Login({ onLoginSuccess }) {
           font-weight: 700;
           margin-top: 0.25rem;
         }
-
         .brand-pitch {
           max-width: 480px;
           margin: auto 0;
         }
-
         .brand-pitch h2 {
           font-size: 2.5rem;
           font-weight: 800;
@@ -219,18 +207,15 @@ export default function Login({ onLoginSuccess }) {
           margin-bottom: 1.5rem;
           letter-spacing: -0.02em;
         }
-
         .brand-pitch p {
           font-size: 1.1rem;
           color: #94a3b8;
           line-height: 1.6;
         }
-
         .brand-footer p {
           color: #475569;
           font-size: 0.85rem;
         }
-
         .login-right {
           flex: 1;
           display: flex;
@@ -240,37 +225,31 @@ export default function Login({ onLoginSuccess }) {
           background: #070911;
           position: relative;
         }
-
         .form-container {
           width: 100%;
           max-width: 440px;
           padding: 2.5rem !important;
           border-radius: 24px !important;
         }
-
         .form-header {
           text-align: center;
           margin-bottom: 2rem;
         }
-
         .form-header h2 {
           font-size: 2rem;
           font-weight: 800;
           margin-top: 0.75rem;
           color: #ffffff;
         }
-
         .form-header p {
           color: #94a3b8;
           margin-top: 0.5rem;
           font-size: 0.95rem;
         }
-
         .input-with-icon {
           position: relative;
           width: 100%;
         }
-
         .input-icon {
           position: absolute;
           left: 1rem;
@@ -280,22 +259,15 @@ export default function Login({ onLoginSuccess }) {
           pointer-events: none;
           transition: var(--transition-smooth);
         }
-
         .input-with-icon .form-input {
           padding-left: 3rem;
         }
-
-        .input-with-icon .form-input:focus + .input-icon {
-          color: #10b981;
-        }
-
         .login-btn {
           width: 100%;
           padding: 0.875rem !important;
           font-size: 1rem;
           margin-top: 1.5rem;
         }
-
         .login-error-badge {
           background: rgba(239, 68, 68, 0.1);
           border: 1px solid rgba(239, 68, 68, 0.2);
@@ -309,26 +281,12 @@ export default function Login({ onLoginSuccess }) {
           font-size: 0.9rem;
           animation: slideUp 0.2s ease;
         }
-
         .form-help {
           text-align: center;
           margin-top: 2rem;
           font-size: 0.875rem;
           color: #64748b;
         }
-
-        .form-help a {
-          color: #10b981;
-          text-decoration: none;
-          font-weight: 500;
-          transition: var(--transition-smooth);
-        }
-
-        .form-help a:hover {
-          color: #059669;
-          text-decoration: underline;
-        }
-
         .spinner {
           width: 20px;
           height: 20px;
@@ -337,22 +295,13 @@ export default function Login({ onLoginSuccess }) {
           border-radius: 50%;
           animation: spin 0.8s linear infinite;
         }
-
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
-
         @media (max-width: 900px) {
-          .login-screen {
-            flex-direction: column;
-          }
-          .login-left {
-            display: none;
-          }
-          .login-right {
-            flex: 1;
-            padding: 1.5rem;
-          }
+          .login-screen { flex-direction: column; }
+          .login-left { display: none; }
+          .login-right { flex: 1; padding: 1.5rem; }
         }
       `}</style>
     </div>
