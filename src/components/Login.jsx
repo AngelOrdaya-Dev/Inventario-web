@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Box, Lock, Mail, ArrowRight, ShieldAlert } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ContactModal from './ContactModal';
@@ -26,7 +26,7 @@ export default function Login({ onLoginSuccess }) {
         const role = email.includes('admin') ? 'Administrador' : 'Empleado';
         onLoginSuccess({ email, role, name: role === 'Administrador' ? 'Giancarlos Barboza' : 'Colaborador Corvex' });
       } else {
-        setError('Credenciales inválidas. Intente con usuario@corvex.com y contraseña "123456".');
+        setError('Credenciales invÃ¡lidas. Intente con usuario@corvex.com y contraseÃ±a "123456".');
       }
       setLoading(false);
     }, 800);
@@ -48,12 +48,12 @@ export default function Login({ onLoginSuccess }) {
         </div>
         
         <div className="brand-pitch">
-          <h2>Gestión de productos, clientes, pedidos e inventario.</h2>
-          <p>La plataforma inteligente todo en uno diseñada para optimizar los flujos de distribución y almacenamiento de CORVEX en tiempo real.</p>
+          <h2>GestiÃ³n de productos, clientes, pedidos e inventario.</h2>
+          <p>La plataforma inteligente todo en uno diseÃ±ada para optimizar los flujos de distribuciÃ³n y almacenamiento de CORVEX en tiempo real.</p>
         </div>
 
         <div className="brand-footer">
-          <p>© 2026 CORVEX Distribuidora. Todos los derechos reservados.</p>
+          <p>Â© 2026 CORVEX Distribuidora. Todos los derechos reservados.</p>
         </div>
       </div>
 
@@ -84,7 +84,7 @@ export default function Login({ onLoginSuccess }) {
 
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
-              <label className="form-label">Correo Electrónico</label>
+              <label className="form-label">Correo ElectrÃ³nico</label>
               <div className="input-with-icon">
                 <Mail size={18} className="input-icon" />
                 <input
@@ -99,13 +99,13 @@ export default function Login({ onLoginSuccess }) {
             </div>
 
             <div className="form-group">
-              <label className="form-label">Contraseña</label>
+              <label className="form-label">ContraseÃ±a</label>
               <div className="input-with-icon">
                 <Lock size={18} className="input-icon" />
                 <input
                   type="password"
                   className="form-input"
-                  placeholder="••••••••"
+                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -131,7 +131,7 @@ export default function Login({ onLoginSuccess }) {
           </form>
 
           <div className="form-help">
-            <p>¿Problemas para ingresar? <button className="link-button" onClick={() => setShowContact(true)}>Contacta al administrador</button></p>
+            <p>Â¿Problemas para ingresar? <button className="link-button" onClick={() => setShowContact(true)}>Contacta al administrador</button></p>
           </div>
         </div>
       </motion.div>

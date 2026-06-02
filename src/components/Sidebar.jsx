@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { LayoutDashboard, ShoppingCart, Users, FolderKanban, ClipboardList, LogOut, Box } from 'lucide-react';
 
 export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
@@ -51,7 +51,7 @@ export default function Sidebar({ activeTab, setActiveTab, user, onLogout }) {
           </div>
         </div>
 
-        <button className="btn-logout" onClick={onLogout} title="Cerrar Sesión">
+        <button className="btn-logout" onClick={onLogout} title="Cerrar SesiÃ³n">
           <LogOut size={18} />
           <span>Salir</span>
         </button>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, X, CheckCircle } from 'lucide-react';
 
@@ -12,7 +12,7 @@ export default function ContactModal({ onClose }) {
     if (!message.trim()) return;
     
     setSending(true);
-    // Simular envío de mensaje
+    // Simular envÃ­o de mensaje
     setTimeout(() => {
       setSending(false);
       setSent(true);
@@ -61,7 +61,7 @@ export default function ContactModal({ onClose }) {
             <>
               <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem', color: '#10b981' }}>Contacta al Administrador</h3>
               <p style={{ color: '#9ca3af', marginBottom: '1.5rem', fontSize: '0.9rem' }}>
-                Si tienes algún problema con tus credenciales o el sistema, envíanos un mensaje y te ayudaremos.
+                Si tienes algÃºn problema con tus credenciales o el sistema, envÃ­anos un mensaje y te ayudaremos.
               </p>
 
               <form onSubmit={handleSubmit}>
@@ -72,7 +72,7 @@ export default function ContactModal({ onClose }) {
                   <textarea
                     required
                     className="form-input"
-                    placeholder="Describe tu problema aquí..."
+                    placeholder="Describe tu problema aquÃ­..."
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -125,8 +125,8 @@ export default function ContactModal({ onClose }) {
               style={{ textAlign: 'center', padding: '2rem 0' }}
             >
               <CheckCircle size={48} color="#10b981" style={{ margin: '0 auto 1rem' }} />
-              <h3 style={{ color: 'white', marginBottom: '0.5rem' }}>¡Mensaje Enviado!</h3>
-              <p style={{ color: '#9ca3af' }}>El administrador se pondrá en contacto pronto.</p>
+              <h3 style={{ color: 'white', marginBottom: '0.5rem' }}>Â¡Mensaje Enviado!</h3>
+              <p style={{ color: '#9ca3af' }}>El administrador se pondrÃ¡ en contacto pronto.</p>
             </motion.div>
           )}
         </motion.div>

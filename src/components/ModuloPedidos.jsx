@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Plus, Search, Eye, ShoppingBag, Trash2, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ActionButton from './ActionButton';
@@ -46,7 +46,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
   };
 
   const handleDelete = (orderId) => {
-    if (confirm(`¿Está seguro de eliminar el pedido ${orderId}?`)) {
+    if (confirm(`Â¿EstÃ¡ seguro de eliminar el pedido ${orderId}?`)) {
       onDeleteOrder(orderId);
     }
   };
@@ -112,7 +112,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Buscar por N° Pedido o Cliente..."
+            placeholder="Buscar por NÂ° Pedido o Cliente..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -123,7 +123,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
         <table className="custom-table">
           <thead>
             <tr>
-              <th>N° Pedido</th>
+              <th>NÂ° Pedido</th>
               <th>Cliente</th>
               <th>Fecha de Registro</th>
               <th>Total Estimado</th>
@@ -194,9 +194,9 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
 
               <div className="form-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <label className="form-label" style={{ margin: 0 }}>Ítems del Pedido</label>
+                  <label className="form-label" style={{ margin: 0 }}>Ãtems del Pedido</label>
                   <button type="button" className="btn-secondary" style={{ padding: '0.25rem 0.75rem', fontSize: '0.85rem' }} onClick={handleAddItem}>
-                    + Añadir Producto
+                    + AÃ±adir Producto
                   </button>
                 </div>
 
@@ -262,7 +262,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
             
             <div className="order-details-card">
               <p><strong>Cliente:</strong> {selectedOrder.cliente}</p>
-              <p><strong>Fecha Emisión:</strong> {selectedOrder.fecha}</p>
+              <p><strong>Fecha EmisiÃ³n:</strong> {selectedOrder.fecha}</p>
               <p><strong>Estado Pago:</strong> <span className="badge badge-success">Pagado / Completado</span></p>
             </div>
 

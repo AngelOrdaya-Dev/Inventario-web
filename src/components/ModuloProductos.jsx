@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Plus, Search, Edit2, Trash2, ArrowUpDown, ChevronDown, Check, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ActionButton from './ActionButton';
@@ -22,7 +22,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
     descripcion: ''
   });
 
-  const categories = ['Todas', 'General', 'Abarrotes', 'Bebidas', 'Lácteos', 'Limpieza', 'Cuidado Personal', 'Golosinas'];
+  const categories = ['Todas', 'General', 'Abarrotes', 'Bebidas', 'LÃ¡cteos', 'Limpieza', 'Cuidado Personal', 'Golosinas'];
 
   const filteredProducts = products.filter(product => {
     const matchesSearch = (product.producto || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -63,7 +63,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
   };
 
   const handleDelete = (codigo) => {
-    if (confirm('¿Está seguro de eliminar este producto?')) {
+    if (confirm('Â¿EstÃ¡ seguro de eliminar este producto?')) {
       onDeleteProduct(codigo);
     }
   };
@@ -121,14 +121,14 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Buscar por nombre o código de barras..."
+            placeholder="Buscar por nombre o cÃ³digo de barras..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         
         <div className="filter-group">
-          <label>Categoría:</label>
+          <label>CategorÃ­a:</label>
           <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} className="select-input">
             {categories.map(cat => (
               <option key={cat} value={cat}>{cat}</option>
@@ -141,9 +141,9 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
         <table className="custom-table">
           <thead>
             <tr>
-              <th>Código de Barras</th>
+              <th>CÃ³digo de Barras</th>
               <th>Producto</th>
-              <th>Categoría</th>
+              <th>CategorÃ­a</th>
               <th>Precio</th>
               <th>Unidad</th>
               <th>Stock</th>
@@ -184,7 +184,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
             {filteredProducts.length === 0 && (
               <tr>
                 <td colSpan="7" style={{ textAlign: 'center', padding: '3rem', color: '#64748b' }}>
-                  No se encontraron productos que coincidan con la búsqueda.
+                  No se encontraron productos que coincidan con la bÃºsqueda.
                 </td>
               </tr>
             )}
@@ -209,7 +209,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
               </div>
 
               <div className="form-group">
-                <label className="form-label">Descripción</label>
+                <label className="form-label">DescripciÃ³n</label>
                 <input
                   type="text"
                   className="form-input"
@@ -220,7 +220,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
 
               <div className="form-row">
                 <div className="form-group col-6">
-                  <label className="form-label">Código de Barras</label>
+                  <label className="form-label">CÃ³digo de Barras</label>
                   <input
                     type="text"
                     disabled
@@ -229,7 +229,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
                   />
                 </div>
                 <div className="form-group col-6">
-                  <label className="form-label">Categoría</label>
+                  <label className="form-label">CategorÃ­a</label>
                   <select
                     className="form-input"
                     value={formData.categoria}
@@ -281,7 +281,7 @@ export default function ModuloProductos({ products, onAddProduct, onEditProduct,
 
               <div className="form-row">
                 <div className="form-group col-6">
-                  <label className="form-label">Stock Mínimo</label>
+                  <label className="form-label">Stock MÃ­nimo</label>
                   <input
                     type="number"
                     required

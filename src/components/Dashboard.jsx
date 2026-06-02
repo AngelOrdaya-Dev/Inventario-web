@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Box, Users, ShoppingCart, TrendingUp, AlertTriangle, CheckCircle, Package } from 'lucide-react';
 
 export default function Dashboard({ products, clients, orders, onNavigate }) {
@@ -15,7 +15,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
   const recentOrders = [...orders].slice(-4).reverse();
 
   // Categories Distribution
-  const categories = [...new Set(products.map(p => p.categoria || 'Sin Categoría'))];
+  const categories = [...new Set(products.map(p => p.categoria || 'Sin CategorÃ­a'))];
 
   return (
     <div className="dashboard-view">
@@ -26,7 +26,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         </div>
         <div className="live-indicator">
           <span className="ping-dot"></span>
-          <span className="ping-label">En Línea</span>
+          <span className="ping-label">En LÃ­nea</span>
         </div>
       </div>
 
@@ -37,7 +37,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
             <Package size={24} />
           </div>
           <div className="kpi-details">
-            <span className="kpi-title">Productos Únicos</span>
+            <span className="kpi-title">Productos Ãšnicos</span>
             <span className="kpi-value">{totalProducts}</span>
           </div>
           <div className="kpi-glow blue"></div>
@@ -70,7 +70,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
             <TrendingUp size={24} />
           </div>
           <div className="kpi-details">
-            <span className="kpi-title">Unidades en Almacén</span>
+            <span className="kpi-title">Unidades en AlmacÃ©n</span>
             <span className="kpi-value">{totalUnits}</span>
           </div>
           <div className="kpi-glow purple"></div>
@@ -84,16 +84,16 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
           <div className="section-title-wrapper">
             <div className="flex-align gap-2">
               <AlertTriangle className="text-warning" size={20} />
-              <h3>Alertas de Inventario Crítico</h3>
+              <h3>Alertas de Inventario CrÃ­tico</h3>
             </div>
-            <span className="badge badge-danger">{lowStockProducts.length} Críticos</span>
+            <span className="badge badge-danger">{lowStockProducts.length} CrÃ­ticos</span>
           </div>
 
           <div className="alert-list">
             {lowStockProducts.length === 0 ? (
               <div className="empty-state">
                 <CheckCircle size={32} className="text-success" />
-                <p>¡Todo en orden! Todos los productos están por encima del stock mínimo establecido.</p>
+                <p>Â¡Todo en orden! Todos los productos estÃ¡n por encima del stock mÃ­nimo establecido.</p>
               </div>
             ) : (
               lowStockProducts.map(p => {
@@ -102,7 +102,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
                   <div key={p.codigo} className="alert-item" onClick={() => onNavigate('inventario')}>
                     <div className="alert-info">
                       <span className="alert-product-name">{p.producto}</span>
-                      <span className="alert-product-meta">Cód: {p.codigo} | Mínimo: {p.stockMinimo} {p.unidad}</span>
+                      <span className="alert-product-meta">CÃ³d: {p.codigo} | MÃ­nimo: {p.stockMinimo} {p.unidad}</span>
                     </div>
                     <div className="alert-metric">
                       <div className="alert-bar-bg">
@@ -123,7 +123,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         {/* Recent Orders */}
         <div className="glass-card flex-1">
           <div className="section-title-wrapper">
-            <h3>Últimos Pedidos</h3>
+            <h3>Ãšltimos Pedidos</h3>
             <button className="btn-text-link" onClick={() => onNavigate('pedidos')}>Ver todos</button>
           </div>
 
