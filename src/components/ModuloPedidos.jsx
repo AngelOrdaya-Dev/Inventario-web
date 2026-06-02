@@ -1,30 +1,29 @@
 import React, { useState } from 'react';
-import { Plus, Search, Eye, Edit2, ShoppingBag, Trash2, Calendar, FileText } from 'lucide-react';
+import { Plus, Search, Eye, ShoppingBag, Trash2, Calendar } from 'lucide-react';
 
-export default function ModuloPedidos({ orders, setOrders, products, setProducts, clients }) {
+export default function ModuloPedidos({ orders, products, clients, onAddOrder, onDeleteOrder }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
   // Form State
-  const [clientId, setClientId] = useState('');
-  const [orderItems, setOrderItems] = useState([{ productId: '', quantity: 1 }]);
+  const [clientName, setClientName] = useState('');
+  const [orderItems, setOrderItems] = useState([{ codigo: '', cantidad: 1 }]);
 
   const filteredOrders = orders.filter(order => {
-    const client = clients.find(c => c.id === order.clientId);
-    return client?.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-           order.orderNumber.toLowerCase().includes(searchTerm.toLowerCase());
+    return (order.cliente || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
+           (order.id || '').toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   const openAddModal = () => {
-    setClientId(clients[0]?.id || '');
-    setOrderItems([{ productId: products[0]?.id || '', quantity: 1 }]);
+    setClientName(clients[0]?.nombre || '');
+    setOrderItems([{ codigo: products[0]?.codigo || '', cantidad: 1 }]);
     setShowModal(true);
   };
 
   const handleAddItem = () => {
-    setOrderItems([...orderItems, { productId: products[0]?.id || '', quantity: 1 }]);
+    setOrderItems([...orderItems, { codigo: products[0]?.codigo || '', cantidad: 1 }]);
   };
 
   const handleRemoveItem = (index) => {
@@ -44,44 +43,42 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
     setViewModal(true);
   };
 
+  const handleDelete = (orderId) => {
+    if (confirm(`¿Está seguro de eliminar el pedido ${orderId}?`)) {
+      onDeleteOrder(orderId);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let total = 0;
     const items = orderItems.map(item => {
-      const prod = products.find(p => p.id === parseInt(item.productId));
-      const quantity = parseInt(item.quantity);
-      const subtotal = prod ? prod.price * quantity : 0;
+      const prod = products.find(p => p.codigo === item.codigo);
+      const cantidad = parseInt(item.cantidad);
+      const subtotal = prod ? prod.precio * cantidad : 0;
       total += subtotal;
 
-      // Update inventory stock
-      if (prod) {
-        prod.stock -= quantity;
-      }
-
       return {
-        productId: parseInt(item.productId),
-        name: prod ? prod.name : 'Producto',
-        price: prod ? prod.price : 0,
-        quantity,
+        codigo: item.codigo,
+        nombre: prod ? prod.producto : 'Producto',
+        precio: prod ? prod.precio : 0,
+        cantidad,
         subtotal
       };
     });
 
-    // Save updated products stock
-    setProducts([...products]);
-
     const newOrder = {
-      id: Date.now(),
-      orderNumber: `PED-${Math.floor(10000 + Math.random() * 90000)}`,
-      clientId: parseInt(clientId),
-      date: new Date().toISOString().split('T')[0],
-      items,
+      id: `#${Math.floor(100 + Math.random() * 900)}`,
+      cliente: clientName,
+      fecha: new Date().toLocaleDateString('es-ES'),
+      fechaEntrega: new Date(Date.now() + 5*24*60*60*1000).toISOString().split('T')[0],
+      productos: items,
       total,
-      status: 'Completado'
+      estado: 'Pendiente'
     };
 
-    setOrders([newOrder, ...orders]);
+    onAddOrder(newOrder);
     setShowModal(false);
   };
 
@@ -90,10 +87,10 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
       <div className="module-header">
         <div>
           <span className="badge badge-warning">VENTAS</span>
-          <h2 className="module-title">Pedidos y Facturación</h2>
+          <h2 className="module-title">Pedidos</h2>
         </div>
         <button className="btn-primary" onClick={openAddModal}>
-          <Plus size={18} /> Crear Pedido
+          <Plus size={18} /> Crear nuevo pedido
         </button>
       </div>
 
@@ -115,32 +112,42 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
             <tr>
               <th>N° Pedido</th>
               <th>Cliente</th>
-              <th>Fecha</th>
-              <th>Total</th>
+              <th>Fecha de Registro</th>
+              <th>Total Estimado</th>
               <th>Estado</th>
+              <th>Fecha de Entrega</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {filteredOrders.map((order) => {
-              const client = clients.find(c => c.id === order.clientId);
               return (
                 <tr key={order.id}>
-                  <td className="font-mono text-cyan">{order.orderNumber}</td>
-                  <td><span className="font-semibold">{client?.name || 'Cliente Desconocido'}</span></td>
+                  <td className="font-mono text-cyan">{order.id}</td>
+                  <td><span className="font-semibold" style={{ color: 'white' }}>{order.cliente}</span></td>
                   <td>
                     <span className="text-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                      <Calendar size={14} /> {order.date}
+                      <Calendar size={14} /> {order.fecha}
                     </span>
                   </td>
-                  <td className="font-semibold">${order.total.toFixed(2)}</td>
+                  <td className="font-semibold">S/ {Number(order.total).toFixed(2)}</td>
                   <td>
-                    <span className="badge badge-success">Completado</span>
+                    <span className={`badge ${
+                      order.estado === 'Entregado' ? 'badge-success' :
+                      order.estado === 'Enviado' ? 'badge-info' :
+                      order.estado === 'Cancelado' ? 'badge-danger' : 'badge-warning'
+                    }`}>
+                      {order.estado}
+                    </span>
                   </td>
+                  <td className="text-secondary">{order.fechaEntrega}</td>
                   <td>
                     <div className="action-buttons">
                       <button className="btn-action edit" onClick={() => handleViewOrder(order)} title="Ver Detalle">
                         <Eye size={16} />
+                      </button>
+                      <button className="btn-action delete" onClick={() => handleDelete(order.id)} title="Eliminar">
+                        <Trash2 size={16} />
                       </button>
                     </div>
                   </td>
@@ -149,7 +156,7 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
             })}
             {filteredOrders.length === 0 && (
               <tr>
-                <td colSpan="6" style={{ textAlign: 'center', padding: '3rem', color: '#64748b' }}>
+                <td colSpan="7" style={{ textAlign: 'center', padding: '3rem', color: '#64748b' }}>
                   No se encontraron pedidos registrados.
                 </td>
               </tr>
@@ -167,17 +174,17 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
                 <label className="form-label">Cliente</label>
                 <select
                   className="form-input"
-                  value={clientId}
-                  onChange={(e) => setClientId(e.target.value)}
+                  value={clientName}
+                  onChange={(e) => setClientName(e.target.value)}
                 >
                   {clients.map(c => (
-                    <option key={c.id} value={c.id}>{c.name} ({c.documentId})</option>
+                    <option key={c.documento} value={c.nombre}>{c.nombre} ({c.documento})</option>
                   ))}
                 </select>
               </div>
 
               <div className="form-group">
-                <div style={{ display: 'flex', justifyContent: 'between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                   <label className="form-label" style={{ margin: 0 }}>Ítems del Pedido</label>
                   <button type="button" className="btn-secondary" style={{ padding: '0.25rem 0.75rem', fontSize: '0.85rem' }} onClick={handleAddItem}>
                     + Añadir Producto
@@ -185,18 +192,18 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
                 </div>
 
                 {orderItems.map((item, index) => {
-                  const selectedProd = products.find(p => p.id === parseInt(item.productId));
+                  const selectedProd = products.find(p => p.codigo === item.codigo);
                   return (
                     <div key={index} className="form-row" style={{ marginBottom: '0.5rem', alignItems: 'center' }}>
                       <div className="form-group col-7" style={{ margin: 0 }}>
                         <select
                           className="form-input"
-                          value={item.productId}
-                          onChange={(e) => handleItemChange(index, 'productId', e.target.value)}
+                          value={item.codigo}
+                          onChange={(e) => handleItemChange(index, 'codigo', e.target.value)}
                         >
                           {products.map(p => (
-                            <option key={p.id} value={p.id} disabled={p.stock <= 0}>
-                              {p.name} - ${p.price.toFixed(2)} ({p.stock} disp.)
+                            <option key={p.codigo} value={p.codigo} disabled={p.stock <= 0}>
+                              {p.producto} - S/ {p.precio.toFixed(2)} ({p.stock} disp.)
                             </option>
                           ))}
                         </select>
@@ -209,8 +216,8 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
                           required
                           className="form-input"
                           placeholder="Cant."
-                          value={item.quantity}
-                          onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
+                          value={item.cantidad}
+                          onChange={(e) => handleItemChange(index, 'cantidad', e.target.value)}
                         />
                       </div>
                       <div className="form-group col-2" style={{ margin: 0, textAlign: 'center' }}>
@@ -241,32 +248,32 @@ export default function ModuloPedidos({ orders, setOrders, products, setProducts
           <div className="modal-content glass-card animated zoomIn" style={{ maxWidth: '500px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
               <ShoppingBag size={24} className="text-cyan" />
-              <h3>Detalle de Pedido {selectedOrder.orderNumber}</h3>
+              <h3>Detalle de Pedido {selectedOrder.id}</h3>
             </div>
             
             <div className="order-details-card">
-              <p><strong>Cliente:</strong> {clients.find(c => c.id === selectedOrder.clientId)?.name}</p>
-              <p><strong>Fecha Emisión:</strong> {selectedOrder.date}</p>
+              <p><strong>Cliente:</strong> {selectedOrder.cliente}</p>
+              <p><strong>Fecha Emisión:</strong> {selectedOrder.fecha}</p>
               <p><strong>Estado Pago:</strong> <span className="badge badge-success">Pagado / Completado</span></p>
             </div>
 
             <h4 style={{ marginTop: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>Productos Adquiridos</h4>
             <div className="details-items-list">
-              {selectedOrder.items.map((item, idx) => (
+              {(selectedOrder.productos || []).map((item, idx) => (
                 <div key={idx} className="details-item-row">
                   <div>
-                    <span className="font-semibold text-white">{item.name}</span>
+                    <span className="font-semibold text-white">{item.nombre}</span>
                     <br />
-                    <span className="text-secondary" style={{ fontSize: '0.85rem' }}>{item.quantity} unidades x ${item.price.toFixed(2)}</span>
+                    <span className="text-secondary" style={{ fontSize: '0.85rem' }}>{item.cantidad} unidades x S/ {Number(item.precio).toFixed(2)}</span>
                   </div>
-                  <span className="font-semibold text-cyan">${item.subtotal.toFixed(2)}</span>
+                  <span className="font-semibold text-cyan">S/ {(item.cantidad * item.precio).toFixed(2)}</span>
                 </div>
               ))}
             </div>
 
             <div className="details-total-row">
               <span>TOTAL FACTURADO</span>
-              <span className="total-amount">${selectedOrder.total.toFixed(2)}</span>
+              <span className="total-amount">S/ {Number(selectedOrder.total).toFixed(2)}</span>
             </div>
 
             <div className="modal-footer" style={{ marginTop: '2rem' }}>

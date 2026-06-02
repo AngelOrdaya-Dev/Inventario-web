@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Search, Edit2, Trash2, ArrowUpDown, ChevronDown, Check, AlertCircle } from 'lucide-react';
 
-export default function ModuloProductos({ products, setProducts }) {
+export default function ModuloProductos({ products, onAddProduct, onEditProduct, onDeleteProduct }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('Todas');
   const [showModal, setShowModal] = useState(false);
@@ -10,26 +10,37 @@ export default function ModuloProductos({ products, setProducts }) {
   
   // Form State
   const [formData, setFormData] = useState({
-    name: '',
-    sku: '',
-    category: 'Bebidas',
-    price: '',
+    producto: '',
+    codigo: '',
+    categoria: 'General',
+    precio: '',
     stock: '',
-    minStock: ''
+    stockMinimo: '',
+    unidad: 'unidades',
+    descripcion: ''
   });
 
-  const categories = ['Todas', 'Bebidas', 'Lácteos', 'Abarrotes', 'Limpieza', 'Cuidado Personal', 'Golosinas'];
+  const categories = ['Todas', 'General', 'Abarrotes', 'Bebidas', 'Lácteos', 'Limpieza', 'Cuidado Personal', 'Golosinas'];
 
   const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          product.sku.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = categoryFilter === 'Todas' || product.category === categoryFilter;
+    const matchesSearch = (product.producto || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          (product.codigo || '').toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = categoryFilter === 'Todas' || product.categoria === categoryFilter;
     return matchesSearch && matchesCategory;
   });
 
   const openAddModal = () => {
     setModalMode('add');
-    setFormData({ name: '', sku: `COR-${Math.floor(1000 + Math.random() * 9000)}`, category: 'Bebidas', price: '', stock: '', minStock: '' });
+    setFormData({
+      producto: '',
+      codigo: `${Math.floor(10000000 + Math.random() * 90000000)}`,
+      categoria: 'General',
+      precio: '',
+      stock: '',
+      stockMinimo: '',
+      unidad: 'paquetes',
+      descripcion: ''
+    });
     setShowModal(true);
   };
 
@@ -37,50 +48,45 @@ export default function ModuloProductos({ products, setProducts }) {
     setModalMode('edit');
     setSelectedProduct(product);
     setFormData({
-      name: product.name,
-      sku: product.sku,
-      category: product.category,
-      price: product.price,
+      producto: product.producto,
+      codigo: product.codigo,
+      categoria: product.categoria || 'General',
+      precio: product.precio,
       stock: product.stock,
-      minStock: product.minStock || 5
+      stockMinimo: product.stockMinimo || 5,
+      unidad: product.unidad || 'unidades',
+      descripcion: product.descripcion || ''
     });
     setShowModal(true);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (codigo) => {
     if (confirm('¿Está seguro de eliminar este producto?')) {
-      const updated = products.filter(p => p.id !== id);
-      setProducts(updated);
+      onDeleteProduct(codigo);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const priceNum = parseFloat(formData.price);
+    const priceNum = parseFloat(formData.precio);
     const stockNum = parseInt(formData.stock);
-    const minStockNum = parseInt(formData.minStock);
+    const minStockNum = parseInt(formData.stockMinimo);
+
+    const productPayload = {
+      producto: formData.producto,
+      codigo: formData.codigo,
+      categoria: formData.categoria,
+      precio: priceNum,
+      stock: stockNum,
+      stockMinimo: minStockNum,
+      unidad: formData.unidad,
+      descripcion: formData.descripcion
+    };
 
     if (modalMode === 'add') {
-      const newProduct = {
-        id: Date.now(),
-        name: formData.name,
-        sku: formData.sku,
-        category: formData.category,
-        price: priceNum,
-        stock: stockNum,
-        minStock: minStockNum
-      };
-      setProducts([...products, newProduct]);
+      onAddProduct(productPayload);
     } else {
-      const updated = products.map(p => p.id === selectedProduct.id ? {
-        ...p,
-        name: formData.name,
-        category: formData.category,
-        price: priceNum,
-        stock: stockNum,
-        minStock: minStockNum
-      } : p);
-      setProducts(updated);
+      onEditProduct(productPayload);
     }
     setShowModal(false);
   };
@@ -89,11 +95,11 @@ export default function ModuloProductos({ products, setProducts }) {
     <div className="module-container">
       <div className="module-header">
         <div>
-          <span className="badge badge-primary">GESTIÓN</span>
-          <h2 className="module-title">Catálogo de Productos</h2>
+          <span className="badge badge-primary">INVENTARIO</span>
+          <h2 className="module-title">Inventario de Productos</h2>
         </div>
         <button className="btn-primary" onClick={openAddModal}>
-          <Plus size={18} /> Nuevo Producto
+          <Plus size={18} /> Registrar nuevo producto
         </button>
       </div>
 
@@ -102,7 +108,7 @@ export default function ModuloProductos({ products, setProducts }) {
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Buscar por nombre o SKU..."
+            placeholder="Buscar por nombre o código de barras..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -122,44 +128,43 @@ export default function ModuloProductos({ products, setProducts }) {
         <table className="custom-table">
           <thead>
             <tr>
-              <th>SKU</th>
-              <th>Nombre</th>
+              <th>Código de Barras</th>
+              <th>Producto</th>
               <th>Categoría</th>
               <th>Precio</th>
+              <th>Unidad</th>
               <th>Stock</th>
-              <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {filteredProducts.map((product) => {
-              const isLowStock = product.stock <= (product.minStock || 5);
+              const isLowStock = Number(product.stock) <= Number(product.stockMinimo || 5);
               return (
-                <tr key={product.id}>
-                  <td className="font-mono text-cyan">{product.sku}</td>
-                  <td><span className="font-semibold">{product.name}</span></td>
-                  <td><span className="badge badge-dark">{product.category}</span></td>
-                  <td className="font-semibold">${product.price.toFixed(2)}</td>
+                <tr key={product.codigo}>
+                  <td className="font-mono text-cyan">{product.codigo}</td>
                   <td>
-                    <span className={isLowStock ? 'text-red font-semibold' : 'text-green font-semibold'}>
-                      {product.stock} unds
-                    </span>
+                    <div>
+                      <span className="font-semibold" style={{ color: 'white' }}>{product.producto}</span>
+                      {product.descripcion && (
+                        <div style={{ fontSize: '0.75rem', color: '#64748b' }}>{product.descripcion}</div>
+                      )}
+                    </div>
                   </td>
+                  <td><span className="badge badge-info">{product.categoria}</span></td>
+                  <td className="font-semibold">S/ {product.precio.toFixed(2)}</td>
+                  <td className="text-secondary">{product.unidad}</td>
                   <td>
-                    {isLowStock ? (
-                      <span className="badge badge-danger" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                        <AlertCircle size={12} /> Stock Crítico
-                      </span>
-                    ) : (
-                      <span className="badge badge-success">Disponible</span>
-                    )}
+                    <span className={isLowStock ? 'badge badge-danger' : 'badge badge-success'}>
+                      {product.stock}
+                    </span>
                   </td>
                   <td>
                     <div className="action-buttons">
                       <button className="btn-action edit" onClick={() => openEditModal(product)} title="Editar">
                         <Edit2 size={16} />
                       </button>
-                      <button className="btn-action delete" onClick={() => handleDelete(product.id)} title="Eliminar">
+                      <button className="btn-action delete" onClick={() => handleDelete(product.codigo)} title="Eliminar">
                         <Trash2 size={16} />
                       </button>
                     </div>
@@ -189,27 +194,37 @@ export default function ModuloProductos({ products, setProducts }) {
                   type="text"
                   required
                   className="form-input"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  value={formData.producto}
+                  onChange={(e) => setFormData({ ...formData, producto: e.target.value })}
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Descripción</label>
+                <input
+                  type="text"
+                  className="form-input"
+                  value={formData.descripcion}
+                  onChange={(e) => setFormData({ ...formData, descripcion: e.target.value })}
                 />
               </div>
 
               <div className="form-row">
                 <div className="form-group col-6">
-                  <label className="form-label">SKU</label>
+                  <label className="form-label">Código de Barras</label>
                   <input
                     type="text"
                     disabled
                     className="form-input"
-                    value={formData.sku}
+                    value={formData.codigo}
                   />
                 </div>
                 <div className="form-group col-6">
                   <label className="form-label">Categoría</label>
                   <select
                     className="form-input"
-                    value={formData.category}
-                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    value={formData.categoria}
+                    onChange={(e) => setFormData({ ...formData, categoria: e.target.value })}
                   >
                     {categories.slice(1).map(cat => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -220,19 +235,30 @@ export default function ModuloProductos({ products, setProducts }) {
 
               <div className="form-row">
                 <div className="form-group col-4">
-                  <label className="form-label">Precio ($)</label>
+                  <label className="form-label">Precio (S/)</label>
                   <input
                     type="number"
                     step="0.01"
                     required
                     min="0.01"
                     className="form-input"
-                    value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    value={formData.precio}
+                    onChange={(e) => setFormData({ ...formData, precio: e.target.value })}
                   />
                 </div>
                 <div className="form-group col-4">
-                  <label className="form-label">Stock Inicial</label>
+                  <label className="form-label">Unidad de Medida</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="paquetes, cajas, bolsas"
+                    className="form-input"
+                    value={formData.unidad}
+                    onChange={(e) => setFormData({ ...formData, unidad: e.target.value })}
+                  />
+                </div>
+                <div className="form-group col-4">
+                  <label className="form-label">Stock</label>
                   <input
                     type="number"
                     required
@@ -242,15 +268,18 @@ export default function ModuloProductos({ products, setProducts }) {
                     onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
                   />
                 </div>
-                <div className="form-group col-4">
+              </div>
+
+              <div className="form-row">
+                <div className="form-group col-6">
                   <label className="form-label">Stock Mínimo</label>
                   <input
                     type="number"
                     required
                     min="1"
                     className="form-input"
-                    value={formData.minStock}
-                    onChange={(e) => setFormData({ ...formData, minStock: e.target.value })}
+                    value={formData.stockMinimo}
+                    onChange={(e) => setFormData({ ...formData, stockMinimo: e.target.value })}
                   />
                 </div>
               </div>

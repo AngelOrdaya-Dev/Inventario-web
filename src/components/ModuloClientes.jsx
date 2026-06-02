@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Plus, Search, Edit2, Trash2, Mail, Phone, MapPin, UserCheck } from 'lucide-react';
+import { Plus, Search, Edit2, Trash2, Mail, Phone, MapPin } from 'lucide-react';
 
-export default function ModuloClientes({ clients, setClients }) {
+export default function ModuloClientes({ clients, onAddClient, onEditClient, onDeleteClient }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState('add'); // 'add' or 'edit'
@@ -9,22 +9,22 @@ export default function ModuloClientes({ clients, setClients }) {
 
   // Form State
   const [formData, setFormData] = useState({
-    name: '',
+    nombre: '',
     email: '',
-    phone: '',
-    address: '',
-    documentId: ''
+    telefono: '',
+    direccion: '',
+    documento: ''
   });
 
   const filteredClients = clients.filter(client => 
-    client.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    client.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    client.documentId.includes(searchTerm)
+    (client.nombre || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
+    (client.email || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
+    (client.documento || '').includes(searchTerm)
   );
 
   const openAddModal = () => {
     setModalMode('add');
-    setFormData({ name: '', email: '', phone: '', address: '', documentId: '' });
+    setFormData({ nombre: '', email: '', telefono: '', direccion: '', documento: '' });
     setShowModal(true);
   };
 
@@ -32,46 +32,36 @@ export default function ModuloClientes({ clients, setClients }) {
     setModalMode('edit');
     setSelectedClient(client);
     setFormData({
-      name: client.name,
+      nombre: client.nombre,
       email: client.email,
-      phone: client.phone,
-      address: client.address,
-      documentId: client.documentId
+      telefono: client.telefono,
+      direccion: client.direccion,
+      documento: client.documento
     });
     setShowModal(true);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (doc) => {
     if (confirm('¿Está seguro de eliminar este cliente?')) {
-      const updated = clients.filter(c => c.id !== id);
-      setClients(updated);
+      onDeleteClient(doc);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const clientPayload = {
+      nombre: formData.nombre,
+      email: formData.email,
+      telefono: formData.telefono,
+      direccion: formData.direccion,
+      documento: formData.documento
+    };
+
     if (modalMode === 'add') {
-      const newClient = {
-        id: Date.now(),
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        address: formData.address,
-        documentId: formData.documentId,
-        registrationDate: new Date().toISOString().split('T')[0]
-      };
-      setClients([...clients, newClient]);
+      onAddClient(clientPayload);
     } else {
-      const updated = clients.map(c => c.id === selectedClient.id ? {
-        ...c,
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        address: formData.address,
-        documentId: formData.documentId
-      } : c);
-      setClients(updated);
+      onEditClient(clientPayload);
     }
     setShowModal(false);
   };
@@ -81,10 +71,10 @@ export default function ModuloClientes({ clients, setClients }) {
       <div className="module-header">
         <div>
           <span className="badge badge-success">SOCIOS</span>
-          <h2 className="module-title">Directorio de Clientes</h2>
+          <h2 className="module-title">Clientes</h2>
         </div>
         <button className="btn-primary" onClick={openAddModal}>
-          <Plus size={18} /> Nuevo Cliente
+          <Plus size={18} /> Registrar nuevo cliente
         </button>
       </div>
 
@@ -93,7 +83,7 @@ export default function ModuloClientes({ clients, setClients }) {
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Buscar por nombre, correo o RUC/DNI..."
+            placeholder="Buscar por nombre o número de documento..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -104,39 +94,39 @@ export default function ModuloClientes({ clients, setClients }) {
         <table className="custom-table">
           <thead>
             <tr>
-              <th>DNI / RUC</th>
-              <th>Nombre o Razón Social</th>
-              <th>Email</th>
+              <th>Cliente / Razón Social</th>
+              <th>Documento</th>
               <th>Teléfono</th>
+              <th>Email</th>
               <th>Dirección</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {filteredClients.map((client) => (
-              <tr key={client.id}>
-                <td className="font-mono text-cyan">{client.documentId}</td>
+              <tr key={client.documento}>
                 <td>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <div className="client-avatar-mini">
-                      {client.name[0].toUpperCase()}
+                      {client.nombre ? client.nombre[0].toUpperCase() : 'C'}
                     </div>
-                    <span className="font-semibold">{client.name}</span>
+                    <span className="font-semibold" style={{ color: 'white' }}>{client.nombre}</span>
                   </div>
                 </td>
+                <td className="font-mono text-cyan">{client.documento}</td>
                 <td>
-                  <span className="text-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                    <Mail size={14} /> {client.email}
+                  <span className="text-secondary">
+                    {client.telefono}
                   </span>
                 </td>
                 <td>
-                  <span className="text-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                    <Phone size={14} /> {client.phone}
+                  <span className="text-secondary">
+                    {client.email}
                   </span>
                 </td>
                 <td>
-                  <span className="text-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                    <MapPin size={14} /> {client.address}
+                  <span className="text-secondary">
+                    {client.direccion}
                   </span>
                 </td>
                 <td>
@@ -144,7 +134,7 @@ export default function ModuloClientes({ clients, setClients }) {
                     <button className="btn-action edit" onClick={() => openEditModal(client)} title="Editar">
                       <Edit2 size={16} />
                     </button>
-                    <button className="btn-action delete" onClick={() => handleDelete(client.id)} title="Eliminar">
+                    <button className="btn-action delete" onClick={() => handleDelete(client.documento)} title="Eliminar">
                       <Trash2 size={16} />
                     </button>
                   </div>
@@ -173,20 +163,21 @@ export default function ModuloClientes({ clients, setClients }) {
                   type="text"
                   required
                   className="form-input"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  value={formData.nombre}
+                  onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
                 />
               </div>
 
               <div className="form-row">
                 <div className="form-group col-6">
-                  <label className="form-label">DNI / RUC / Doc. Identidad</label>
+                  <label className="form-label">Documento (DNI/RUC)</label>
                   <input
                     type="text"
                     required
+                    disabled={modalMode === 'edit'}
                     className="form-input"
-                    value={formData.documentId}
-                    onChange={(e) => setFormData({ ...formData, documentId: e.target.value })}
+                    value={formData.documento}
+                    onChange={(e) => setFormData({ ...formData, documento: e.target.value })}
                   />
                 </div>
                 <div className="form-group col-6">
@@ -195,8 +186,8 @@ export default function ModuloClientes({ clients, setClients }) {
                     type="text"
                     required
                     className="form-input"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    value={formData.telefono}
+                    onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
                   />
                 </div>
               </div>
@@ -218,8 +209,8 @@ export default function ModuloClientes({ clients, setClients }) {
                   type="text"
                   required
                   className="form-input"
-                  value={formData.address}
-                  onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                  value={formData.direccion}
+                  onChange={(e) => setFormData({ ...formData, direccion: e.target.value })}
                 />
               </div>
 
