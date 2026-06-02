@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
@@ -10,8 +10,8 @@ import { Bell, CheckCircle2 } from 'lucide-react';
 
 // Initial mock dataset from PDF screenshots
 const INITIAL_PRODUCTS = [
-  { codigo: '001381450', producto: 'arroz', categoria: 'General', precio: 4.30, unidad: 'paquetes', stock: 35, stockMinimo: 15, descripcion: 'Arroz costeño familiar superior' },
-  { codigo: '001201240', producto: 'atun', categoria: 'General', precio: 3.50, unidad: 'cajas', stock: 45, stockMinimo: 12, descripcion: 'Atún Real en trozos de aceite vegetal' },
+  { codigo: '001381450', producto: 'arroz', categoria: 'General', precio: 4.30, unidad: 'paquetes', stock: 35, stockMinimo: 15, descripcion: 'Arroz costeÃ±o familiar superior' },
+  { codigo: '001201240', producto: 'atun', categoria: 'General', precio: 3.50, unidad: 'cajas', stock: 45, stockMinimo: 12, descripcion: 'AtÃºn Real en trozos de aceite vegetal' },
   { codigo: '0012578956', producto: 'Fideos', categoria: 'General', precio: 6.40, unidad: 'bolsas', stock: 20, stockMinimo: 13, descripcion: 'Fideos spaghetti Don Vittorio' },
 ];
 
@@ -77,13 +77,13 @@ export default function App() {
   const handleLoginSuccess = (userData) => {
     setUser(userData);
     localStorage.setItem('corvex_user', JSON.stringify(userData));
-    showToast(`¡Sesión iniciada como ${userData.role}!`);
+    showToast(`Â¡SesiÃ³n iniciada como ${userData.role}!`);
   };
 
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('corvex_user');
-    showToast('Sesión cerrada correctamente.', 'info');
+    showToast('SesiÃ³n cerrada correctamente.', 'info');
   };
 
   // PRODUCTS ACTIONS
@@ -99,7 +99,7 @@ export default function App() {
 
   const handleDeleteProduct = (code) => {
     setProducts(products.filter(p => p.codigo !== code));
-    showToast('Producto eliminado del catálogo.', 'error');
+    showToast('Producto eliminado del catÃ¡logo.', 'error');
   };
 
   // CLIENTS ACTIONS
@@ -130,7 +130,7 @@ export default function App() {
       return p;
     });
     setProducts(updatedProducts);
-    showToast(`Pedido ${o.id} creado con éxito y stock descontado.`);
+    showToast(`Pedido ${o.id} creado con Ã©xito y stock descontado.`);
   };
 
   const handleUpdateOrderStatus = (orderId, newStatus) => {
@@ -245,7 +245,7 @@ export default function App() {
         }
 
         .premium-toast.info {
-          border-left: 4px solid #38bdf8;
+          border-left: 4px solid #10b981;
         }
       `}</style>
     </div>

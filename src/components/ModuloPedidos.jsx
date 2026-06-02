@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Plus, Search, Eye, ShoppingBag, Trash2, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ActionButton from './ActionButton';
@@ -46,7 +46,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
   };
 
   const handleDelete = (orderId) => {
-    if (confirm(`¿Está seguro de eliminar el pedido ${orderId}?`)) {
+    if (confirm(`Â¿EstÃ¡ seguro de eliminar el pedido ${orderId}?`)) {
       onDeleteOrder(orderId);
     }
   };
@@ -112,7 +112,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
           <Search size={18} className="search-icon" />
           <input
             type="text"
-            placeholder="Buscar por N° Pedido o Cliente..."
+            placeholder="Buscar por NÂ° Pedido o Cliente..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -123,7 +123,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
         <table className="custom-table">
           <thead>
             <tr>
-              <th>N° Pedido</th>
+              <th>NÂ° Pedido</th>
               <th>Cliente</th>
               <th>Fecha de Registro</th>
               <th>Total Estimado</th>
@@ -136,7 +136,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
             {filteredOrders.map((order) => {
               return (
                 <tr key={order.id}>
-                  <td className="font-mono text-cyan">{order.id}</td>
+                  <td className="font-mono text-emerald">{order.id}</td>
                   <td><span className="font-semibold" style={{ color: 'white' }}>{order.cliente}</span></td>
                   <td>
                     <span className="text-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
@@ -194,9 +194,9 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
 
               <div className="form-group">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                  <label className="form-label" style={{ margin: 0 }}>Ítems del Pedido</label>
+                  <label className="form-label" style={{ margin: 0 }}>Ãtems del Pedido</label>
                   <button type="button" className="btn-secondary" style={{ padding: '0.25rem 0.75rem', fontSize: '0.85rem' }} onClick={handleAddItem}>
-                    + Añadir Producto
+                    + AÃ±adir Producto
                   </button>
                 </div>
 
@@ -256,13 +256,13 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
         <div className="modal-overlay">
           <div className="modal-content glass-card animated zoomIn" style={{ maxWidth: '500px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1rem' }}>
-              <ShoppingBag size={24} className="text-cyan" />
+              <ShoppingBag size={24} className="text-emerald" />
               <h3>Detalle de Pedido {selectedOrder.id}</h3>
             </div>
             
             <div className="order-details-card">
               <p><strong>Cliente:</strong> {selectedOrder.cliente}</p>
-              <p><strong>Fecha Emisión:</strong> {selectedOrder.fecha}</p>
+              <p><strong>Fecha EmisiÃ³n:</strong> {selectedOrder.fecha}</p>
               <p><strong>Estado Pago:</strong> <span className="badge badge-success">Pagado / Completado</span></p>
             </div>
 
@@ -275,7 +275,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
                     <br />
                     <span className="text-secondary" style={{ fontSize: '0.85rem' }}>{item.cantidad} unidades x S/ {Number(item.precio).toFixed(2)}</span>
                   </div>
-                  <span className="font-semibold text-cyan">S/ {(item.cantidad * item.precio).toFixed(2)}</span>
+                  <span className="font-semibold text-emerald">S/ {(item.cantidad * item.precio).toFixed(2)}</span>
                 </div>
               ))}
             </div>
@@ -332,7 +332,7 @@ export default function ModuloPedidos({ orders, products, clients, onAddOrder, o
         }
         .total-amount {
           font-size: 1.5rem;
-          color: #38bdf8;
+          color: #10b981;
         }
       `}</style>
     </motion.div>

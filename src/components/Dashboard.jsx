@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Box, Users, ShoppingCart, TrendingUp, AlertTriangle, CheckCircle, Package } from 'lucide-react';
 
 export default function Dashboard({ products, clients, orders, onNavigate }) {
@@ -15,7 +15,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
   const recentOrders = [...orders].slice(-4).reverse();
 
   // Categories Distribution
-  const categories = [...new Set(products.map(p => p.categoria || 'Sin Categoría'))];
+  const categories = [...new Set(products.map(p => p.categoria || 'Sin CategorÃ­a'))];
 
   return (
     <div className="dashboard-view">
@@ -26,7 +26,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         </div>
         <div className="live-indicator">
           <span className="ping-dot"></span>
-          <span className="ping-label">En Línea</span>
+          <span className="ping-label">En LÃ­nea</span>
         </div>
       </div>
 
@@ -37,7 +37,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
             <Package size={24} />
           </div>
           <div className="kpi-details">
-            <span className="kpi-title">Productos Únicos</span>
+            <span className="kpi-title">Productos Ãšnicos</span>
             <span className="kpi-value">{totalProducts}</span>
           </div>
           <div className="kpi-glow blue"></div>
@@ -70,7 +70,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
             <TrendingUp size={24} />
           </div>
           <div className="kpi-details">
-            <span className="kpi-title">Unidades en Almacén</span>
+            <span className="kpi-title">Unidades en AlmacÃ©n</span>
             <span className="kpi-value">{totalUnits}</span>
           </div>
           <div className="kpi-glow purple"></div>
@@ -84,16 +84,16 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
           <div className="section-title-wrapper">
             <div className="flex-align gap-2">
               <AlertTriangle className="text-warning" size={20} />
-              <h3>Alertas de Inventario Crítico</h3>
+              <h3>Alertas de Inventario CrÃ­tico</h3>
             </div>
-            <span className="badge badge-danger">{lowStockProducts.length} Críticos</span>
+            <span className="badge badge-danger">{lowStockProducts.length} CrÃ­ticos</span>
           </div>
 
           <div className="alert-list">
             {lowStockProducts.length === 0 ? (
               <div className="empty-state">
                 <CheckCircle size={32} className="text-success" />
-                <p>¡Todo en orden! Todos los productos están por encima del stock mínimo establecido.</p>
+                <p>Â¡Todo en orden! Todos los productos estÃ¡n por encima del stock mÃ­nimo establecido.</p>
               </div>
             ) : (
               lowStockProducts.map(p => {
@@ -102,7 +102,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
                   <div key={p.codigo} className="alert-item" onClick={() => onNavigate('inventario')}>
                     <div className="alert-info">
                       <span className="alert-product-name">{p.producto}</span>
-                      <span className="alert-product-meta">Cód: {p.codigo} | Mínimo: {p.stockMinimo} {p.unidad}</span>
+                      <span className="alert-product-meta">CÃ³d: {p.codigo} | MÃ­nimo: {p.stockMinimo} {p.unidad}</span>
                     </div>
                     <div className="alert-metric">
                       <div className="alert-bar-bg">
@@ -123,7 +123,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         {/* Recent Orders */}
         <div className="glass-card flex-1">
           <div className="section-title-wrapper">
-            <h3>Últimos Pedidos</h3>
+            <h3>Ãšltimos Pedidos</h3>
             <button className="btn-text-link" onClick={() => onNavigate('pedidos')}>Ver todos</button>
           </div>
 
@@ -219,7 +219,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
           z-index: 2;
         }
 
-        .kpi-icon-wrapper.blue { background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%); }
+        .kpi-icon-wrapper.emerald { background: linear-gradient(135deg, #059669 0%, #022c22 100%); }
         .kpi-icon-wrapper.green { background: linear-gradient(135deg, #10b981 0%, #047857 100%); }
         .kpi-icon-wrapper.orange { background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); }
         .kpi-icon-wrapper.purple { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); }
@@ -256,7 +256,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
           opacity: 0.15;
           pointer-events: none;
         }
-        .kpi-glow.blue { background: #0ea5e9; }
+        .kpi-glow.emerald { background: #059669; }
         .kpi-glow.green { background: #10b981; }
         .kpi-glow.orange { background: #f59e0b; }
         .kpi-glow.purple { background: #8b5cf6; }
@@ -294,7 +294,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         .btn-text-link {
           background: none;
           border: none;
-          color: #38bdf8;
+          color: #10b981;
           font-weight: 600;
           cursor: pointer;
           font-size: 0.875rem;
@@ -302,7 +302,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
         }
 
         .btn-text-link:hover {
-          color: #0ea5e9;
+          color: #059669;
           text-decoration: underline;
         }
 
@@ -408,7 +408,7 @@ export default function Dashboard({ products, clients, orders, onNavigate }) {
 
         .order-id {
           font-weight: 700;
-          color: #38bdf8;
+          color: #10b981;
         }
 
         .order-customer {
